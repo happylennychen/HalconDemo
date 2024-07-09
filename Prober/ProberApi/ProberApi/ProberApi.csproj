@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{94E1A3E0-3CA0-418C-84B6-A77E017601D6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProberApi</RootNamespace>
+    <AssemblyName>ProberApi</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AuthenticationSpi">
+      <HintPath>..\..\..\AuthenticationSpi\AuthenticationSpi\bin\Debug\AuthenticationSpi.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonApi\CommonApi\bin\Debug\CommonApi.dll</HintPath>
+    </Reference>
+    <Reference Include="MyInstruments">
+      <HintPath>..\..\..\InstrumentDriver\MyInstruments\MyInstruments\bin\Debug\MyInstruments.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMotionStageDriver">
+      <HintPath>..\..\..\MotionStageDriver\MotionStageDriver\MotionStageDriver\bin\Debug\MyMotionStageDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.5.2.5\lib\net46\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GlobalStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MyBoard\RedGreenLightBoard.cs" />
+    <Compile Include="MyBoard\RequestStatusBoard.cs" />
+    <Compile Include="MyCommunication\MyReceivedTextHandler.cs" />
+    <Compile Include="MyCommunication\MyReceivedTextHandlerImpl.cs" />
+    <Compile Include="MyCommunication\MyServerSide.cs" />
+    <Compile Include="MyCommunication\MyServerSideImpl.cs" />
+    <Compile Include="MyConstant\CommonRedGreenLigthKey.cs" />
+    <Compile Include="MyConstant\ConfigKey.cs" />
+    <Compile Include="MyConstant\SharedObjectKey.cs" />
+    <Compile Include="MyCoupling\Coupling2d\AbstractCoupling2D.cs" />
+    <Compile Include="MyCoupling\Coupling2d\CrossCoupling\Triggered\CrossCoupling2DTriggered.cs" />
+    <Compile Include="MyCoupling\Coupling2d\CrossCoupling\Triggered\SingleAxisCouplingTriggered.cs" />
+    <Compile Include="MyCoupling\Coupling2d\CrossCoupling\Triggered\SingleAxisCouplingTriggeredInput.cs" />
+    <Compile Include="MyCoupling\CouplingChart\CrossCoupling2dChart.cs" />
+    <Compile Include="MyCoupling\CouplingChart\CrossCoupling2dSteppedChart.cs" />
+    <Compile Include="MyCoupling\CouplingChart\CrossCoupling2dTriggeredChart.cs" />
+    <Compile Include="MyCoupling\CouplingChart\SpiralCoupling2dChart.cs" />
+    <Compile Include="MyCoupling\CouplingFeedbackUtility.cs" />
+    <Compile Include="MyCoupling\CouplingInUtility.cs" />
+    <Compile Include="MyCoupling\CouplingParameter\AbstractCouplingParameter.cs" />
+    <Compile Include="MyCoupling\CouplingParameter\CrossCoupling2dParameter.cs" />
+    <Compile Include="MyCoupling\CouplingDataHandling\SingleAxisCouplingDataHandling.cs" />
+    <Compile Include="MyCoupling\CouplingDataHandling\SingleAxisCouplingDataHandlingWeightedAverageMean.cs" />
+    <Compile Include="MyCoupling\Coupling2d\CrossCoupling\Stepped\CrossCoupling2DStepped.cs" />
+    <Compile Include="MyCoupling\Coupling2d\CrossCoupling\CrossCouplingUtility.cs" />
+    <Compile Include="MyCoupling\InitializingConfigCoupling.cs" />
+    <Compile Include="MyCoupling\Coupling2d\CrossCoupling\Stepped\SingleAxisCouplingSteppedInput.cs" />
+    <Compile Include="MyCoupling\Coupling2d\CrossCoupling\Stepped\SingleAxisCouplingStepped.cs" />
+    <Compile Include="MyCoupling\Coupling2d\CrossCoupling\SingleAxisCouplingOutput.cs" />
+    <Compile Include="MyCoupling\Coupling2d\SpiralCoupling\SpiralCoupling2D.cs" />
+    <Compile Include="MyCoupling\CouplingParameter\SpiralCoupling2dParameter.cs" />
+    <Compile Include="MyCoupling\Coupling2d\SpiralCoupling\SpiralCouplingOutput.cs" />
+    <Compile Include="MyCoupling\Coupling2d\SpiralCoupling\SpiralCouplingUtility.cs" />
+    <Compile Include="MyEnum\EnumControlMode.cs" />
+    <Compile Include="MyEnum\EnumAboutInfo.cs" />
+    <Compile Include="MyException\RequestSerialNumberDoesNotExistException.cs" />
+    <Compile Include="MyForm\FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\FormAbout.designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForm\FormAuthenticate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\FormAuthenticate.designer.cs">
+      <DependentUpon>FormAuthenticate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForm\FormCoupling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\FormCoupling.designer.cs">
+      <DependentUpon>FormCoupling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForm\FormCouplingCross2d.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\FormCouplingCross2d.designer.cs">
+      <DependentUpon>FormCouplingCross2d.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForm\FormCouplingFeedbackMonitoring.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\FormCouplingFeedbackMonitoring.designer.cs">
+      <DependentUpon>FormCouplingFeedbackMonitoring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForm\FormCouplingFeedbackTriggerInSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\FormCouplingFeedbackTriggerInSetting.Designer.cs">
+      <DependentUpon>FormCouplingFeedbackTriggerInSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForm\FormCouplingShowInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\FormCouplingShowInfo.designer.cs">
+      <DependentUpon>FormCouplingShowInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForm\FormCouplingSpiral2d.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\FormCouplingSpiral2d.designer.cs">
+      <DependentUpon>FormCouplingSpiral2d.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForm\FormInitializationProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\FormInitializationProgress.designer.cs">
+      <DependentUpon>FormInitializationProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForm\FormRedGreenLightBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\FormRedGreenLightBoard.designer.cs">
+      <DependentUpon>FormRedGreenLightBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForm\FormSettingControlMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\FormSettingControlMode.designer.cs">
+      <DependentUpon>FormSettingControlMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForm\FormSettingGuiLanguage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\FormSettingGuiLanguage.Designer.cs">
+      <DependentUpon>FormSettingGuiLanguage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyInitialization\InitializingConfiguration.cs" />
+    <Compile Include="MyInitialization\InitializingQuery.cs" />
+    <Compile Include="MyQuery\AbstractQuery.cs" />
+    <Compile Include="MyQuery\QueryAxisPosition.cs" />
+    <Compile Include="MyQuery\QueryAxisSpeed.cs" />
+    <Compile Include="MyQuery\QueryHasConnectedInstruments.cs" />
+    <Compile Include="MyQuery\QueryModel.cs" />
+    <Compile Include="MyQuery\QuerySerialNumber.cs" />
+    <Compile Include="MyQuery\QuerySoftwareFrameworkVersion.cs" />
+    <Compile Include="MyQuery\QuerySoftwareVersion.cs" />
+    <Compile Include="MyInitialization\InitializingRequest.cs" />
+    <Compile Include="MyRequest\RequestAxisSetSpeed.cs" />
+    <Compile Include="MyRequest\RequestConnectAllInstruments.cs" />
+    <Compile Include="MyRequest\RequestCrossCoupling2d.cs" />
+    <Compile Include="MyRequest\RequestDisconnectAllInstruments.cs" />
+    <Compile Include="MyRequest\MyUnsupportedRequestException.cs" />
+    <Compile Include="MyRequest\RequestAxisMoveAbsolute.cs" />
+    <Compile Include="MyRequest\RequestAxisMoveRelative.cs" />
+    <Compile Include="MyRequest\AbstractRequest.cs" />
+    <Compile Include="MyRequest\RequestSpiralCoupling2d.cs" />
+    <Compile Include="MyUtility\AxisUsageIdValidChecker.cs" />
+    <Compile Include="MyUtility\InstrumentUsageIdValidChecker.cs" />
+    <Compile Include="MyUtility\InternalUtility.cs" />
+    <Compile Include="MyUtility\MyCriticalSection.cs" />
+    <Compile Include="MyUtility\MyPythonScriptFileExecutor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="GlobalStrings.en-US.resx" />
+    <EmbeddedResource Include="GlobalStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalStrings.zh-CN.resx" />
+    <EmbeddedResource Include="GlobalStrings.zh-Hant.resx" />
+    <EmbeddedResource Include="MyForm\FormAbout.en-US.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormAbout.zh-CN.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormAbout.zh-Hant.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormAuthenticate.en-US.resx">
+      <DependentUpon>FormAuthenticate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormAuthenticate.resx">
+      <DependentUpon>FormAuthenticate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormAuthenticate.zh-CN.resx">
+      <DependentUpon>FormAuthenticate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormAuthenticate.zh-Hant.resx">
+      <DependentUpon>FormAuthenticate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCoupling.en-US.resx">
+      <DependentUpon>FormCoupling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCoupling.resx">
+      <DependentUpon>FormCoupling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCoupling.zh-CN.resx">
+      <DependentUpon>FormCoupling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCoupling.zh-Hant.resx">
+      <DependentUpon>FormCoupling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingCross2d.en-US.resx">
+      <DependentUpon>FormCouplingCross2d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingCross2d.resx">
+      <DependentUpon>FormCouplingCross2d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingCross2d.zh-CN.resx">
+      <DependentUpon>FormCouplingCross2d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingCross2d.zh-Hant.resx">
+      <DependentUpon>FormCouplingCross2d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingFeedbackMonitoring.en-US.resx">
+      <DependentUpon>FormCouplingFeedbackMonitoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingFeedbackMonitoring.resx">
+      <DependentUpon>FormCouplingFeedbackMonitoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingFeedbackMonitoring.zh-CN.resx">
+      <DependentUpon>FormCouplingFeedbackMonitoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingFeedbackMonitoring.zh-Hant.resx">
+      <DependentUpon>FormCouplingFeedbackMonitoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingFeedbackTriggerInSetting.en-US.resx">
+      <DependentUpon>FormCouplingFeedbackTriggerInSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingFeedbackTriggerInSetting.resx">
+      <DependentUpon>FormCouplingFeedbackTriggerInSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingFeedbackTriggerInSetting.zh-CN.resx">
+      <DependentUpon>FormCouplingFeedbackTriggerInSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingFeedbackTriggerInSetting.zh-Hant.resx">
+      <DependentUpon>FormCouplingFeedbackTriggerInSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingShowInfo.en-US.resx">
+      <DependentUpon>FormCouplingShowInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingShowInfo.resx">
+      <DependentUpon>FormCouplingShowInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingShowInfo.zh-CN.resx">
+      <DependentUpon>FormCouplingShowInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingShowInfo.zh-Hant.resx">
+      <DependentUpon>FormCouplingShowInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingSpiral2d.en-US.resx">
+      <DependentUpon>FormCouplingSpiral2d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingSpiral2d.resx">
+      <DependentUpon>FormCouplingSpiral2d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingSpiral2d.zh-CN.resx">
+      <DependentUpon>FormCouplingSpiral2d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormCouplingSpiral2d.zh-Hant.resx">
+      <DependentUpon>FormCouplingSpiral2d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormInitializationProgress.en-US.resx">
+      <DependentUpon>FormInitializationProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormInitializationProgress.resx">
+      <DependentUpon>FormInitializationProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormInitializationProgress.zh-CN.resx">
+      <DependentUpon>FormInitializationProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormInitializationProgress.zh-Hant.resx">
+      <DependentUpon>FormInitializationProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormRedGreenLightBoard.resx">
+      <DependentUpon>FormRedGreenLightBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormSettingControlMode.en-US.resx">
+      <DependentUpon>FormSettingControlMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormSettingControlMode.resx">
+      <DependentUpon>FormSettingControlMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormSettingControlMode.zh-CN.resx">
+      <DependentUpon>FormSettingControlMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormSettingControlMode.zh-Hant.resx">
+      <DependentUpon>FormSettingControlMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormSettingGuiLanguage.en-US.resx">
+      <DependentUpon>FormSettingGuiLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormSettingGuiLanguage.resx">
+      <DependentUpon>FormSettingGuiLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormSettingGuiLanguage.zh-CN.resx">
+      <DependentUpon>FormSettingGuiLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\FormSettingGuiLanguage.zh-Hant.resx">
+      <DependentUpon>FormSettingGuiLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

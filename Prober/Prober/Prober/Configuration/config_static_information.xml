@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+	<model>123-456-789-abc</model>
+	<serial_number>abcdefg-1234567</serial_number>
+
+	<authentication enabled="true">
+		<dll_short_file_name>DefaultAuthentication.dll</dll_short_file_name>
+		<full_class_name>DefaultAuthentication.NoneAuthentication</full_class_name>
+	</authentication>
+</config>

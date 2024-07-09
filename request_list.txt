@@ -1,0 +1,10 @@
+*REQUEST!DISCONNECT_ALL_INSTRUMENTS   ---visa driver cannot disconnect
+
+*REQUEST!CONNECT_ALL_INSTRUMENTS   ---ok!
+
+*REQUEST!AXIS_MOVE_REL fiber_coupling,in_x,1000    ---ok!
+
+*REQUEST!AXIS_MOVE_ABS fiber_coupling,out_y,8000   ---ok!
+
+*REQUEST!CROSS_COUPLING_2D fiber_coupling,in_x,in_y   ---ok!
+in_in   

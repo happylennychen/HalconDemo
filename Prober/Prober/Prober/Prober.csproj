@@ -1,0 +1,575 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E1FAC9E6-C0FB-4128-B383-EEDE8E8607B2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Prober</RootNamespace>
+    <AssemblyName>Prober</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>公司logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonApi">
+      <HintPath>..\..\..\CommonApi\CommonApi\bin\Debug\CommonApi.dll</HintPath>
+    </Reference>
+    <Reference Include="halcondotnet, Version=18.11.0.1, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\halcondotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="hdevenginedotnet, Version=18.11.0.1, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\hdevenginedotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="MyInstruments, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\InstrumentDriver\MyInstruments\MyInstruments\bin\Debug\MyInstruments.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMotionStageDriver, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MotionStageDriver\MotionStageDriver\MotionStageDriver\bin\Debug\MyMotionStageDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMotionStageUserControl">
+      <HintPath>..\..\..\MotionStageDriver\MotionStageUserControl\MotionStageUserControl\bin\Debug\MyMotionStageUserControl.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.5.2.5\lib\net46\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="ProberApi">
+      <HintPath>..\..\ProberApi\ProberApi\bin\Debug\ProberApi.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="YTN_CALIBRATION">
+      <HintPath>..\螺距补偿\YTN_CALIBRATION\bin\Debug\YTN_CALIBRATION.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constant\MyRedGreenLigthKey.cs" />
+    <Compile Include="Constant\ZoomTable.cs" />
+    <Compile Include="Forms\FormAngleHeightCali.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAngleHeightCali.Designer.cs">
+      <DependentUpon>FormAngleHeightCali.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormCalibration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormCalibration.Designer.cs">
+      <DependentUpon>FormCalibration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormChuckHeightVerify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormChuckHeightVerify.Designer.cs">
+      <DependentUpon>FormChuckHeightVerify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormDebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDebug.Designer.cs">
+      <DependentUpon>FormDebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormFARolling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormFARolling.Designer.cs">
+      <DependentUpon>FormFARolling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormHeightCalibrate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormHeightCalibrate.Designer.cs">
+      <DependentUpon>FormHeightCalibrate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormHeightDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormHeightDisplay.Designer.cs">
+      <DependentUpon>FormHeightDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormHeightScan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormHeightScan.Designer.cs">
+      <DependentUpon>FormHeightScan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormHeightStableTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormHeightStableTest.Designer.cs">
+      <DependentUpon>FormHeightStableTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormInstrumentControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormInstrumentControl.Designer.cs">
+      <DependentUpon>FormInstrumentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormLeadScrewCali.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormLeadScrewCali.Designer.cs">
+      <DependentUpon>FormLeadScrewCali.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormLeadscrewCompensate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormLeadscrewCompensate.Designer.cs">
+      <DependentUpon>FormLeadscrewCompensate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormMapping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormMapping.designer.cs">
+      <DependentUpon>FormMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormMoveToDutTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormMoveToDutTest.Designer.cs">
+      <DependentUpon>FormMoveToDutTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormOtherDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormOtherDisplay.Designer.cs">
+      <DependentUpon>FormOtherDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormOtherSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormOtherSetting.Designer.cs">
+      <DependentUpon>FormOtherSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormPmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormPmSetting.Designer.cs">
+      <DependentUpon>FormPmSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormPositionCali.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormPositionCali.Designer.cs">
+      <DependentUpon>FormPositionCali.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormPowerStableTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormPowerStableTest.Designer.cs">
+      <DependentUpon>FormPowerStableTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormProberClean.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormProberClean.Designer.cs">
+      <DependentUpon>FormProberClean.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSelectWaferMark.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSelectWaferMark.Designer.cs">
+      <DependentUpon>FormSelectWaferMark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSpecialPositionEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSpecialPositionEdit.Designer.cs">
+      <DependentUpon>FormSpecialPositionEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormTecDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormTecDisplay.designer.cs">
+      <DependentUpon>FormTecDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormTempStableTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormTempStableTest.Designer.cs">
+      <DependentUpon>FormTempStableTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormIOControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormIOControl.designer.cs">
+      <DependentUpon>FormIOControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCamera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCamera.designer.cs">
+      <DependentUpon>FormCamera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormVisionMotionCalibration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormVisionMotionCalibration.Designer.cs">
+      <DependentUpon>FormVisionMotionCalibration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormWorkPositionSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormWorkPositionSetting.Designer.cs">
+      <DependentUpon>FormWorkPositionSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalStrings.en-US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalStrings.en-US.resx</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalStrings.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalStrings.zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalStrings.zh-Hant.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalStrings.zh-Hant.resx</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="InitializeConfiguration\InitializingConfigurationGui.cs" />
+    <Compile Include="MyControl\ControlCamera.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyControl\ControlCamera.Designer.cs">
+      <DependentUpon>ControlCamera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Request\PrivateRequestType.cs" />
+    <Compile Include="Request\PrivateSharedObjectKey.cs" />
+    <Compile Include="Request\RequestMoveToDut.cs" />
+    <Compile Include="Request\RequestSaveImage.cs" />
+    <Compile Include="Request\RequestSetLightColor.cs" />
+    <Compile Include="WaferDef\AssistChuckPosInfo.cs" />
+    <Compile Include="WaferDef\ChuckHeightVerifyInfo.cs" />
+    <Compile Include="WaferDef\ClearProberInfo.cs" />
+    <Compile Include="WaferDef\CommunicationInfo.cs" />
+    <Compile Include="WaferDef\CompParamInfo.cs" />
+    <Compile Include="WaferDef\ConfigMgr.cs" />
+    <Compile Include="WaferDef\ControlDie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WaferDef\ControlDie.designer.cs">
+      <DependentUpon>ControlDie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WaferDef\ControlWafer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WaferDef\ControlWafer.designer.cs">
+      <DependentUpon>ControlWafer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WaferDef\DieInfo.cs" />
+    <Compile Include="WaferDef\DoubleLIneInterpolation.cs" />
+    <Compile Include="WaferDef\EquipmentCalibrationInfo.cs" />
+    <Compile Include="WaferDef\EValue.cs" />
+    <Compile Include="WaferDef\FileHelper.cs" />
+    <Compile Include="WaferDef\HCalibrationInfo.cs" />
+    <Compile Include="WaferDef\HeightCalibrate.cs" />
+    <Compile Include="WaferDef\HeightScanBasicPosition.cs" />
+    <Compile Include="WaferDef\IOInof.cs" />
+    <Compile Include="WaferDef\LightInfo.cs" />
+    <Compile Include="WaferDef\NumericalCal.cs" />
+    <Compile Include="WaferDef\PlatCalibrate.cs" />
+    <Compile Include="WaferDef\PmTriggerSetting.cs" />
+    <Compile Include="WaferDef\RecordPointInfo.cs" />
+    <Compile Include="WaferDef\SpecialPositionInfo.cs" />
+    <Compile Include="WaferDef\StateConstant.cs" />
+    <Compile Include="WaferDef\SubdieOrdinary.cs" />
+    <Compile Include="WaferDef\UIClass.cs" />
+    <Compile Include="WaferDef\VisionMgr.cs" />
+    <Compile Include="WaferDef\WaferItemInfo.cs" />
+    <Compile Include="WaferDef\WaferManual.cs" />
+    <Compile Include="WaferDef\WaferMapInfo.cs" />
+    <Compile Include="WaferDef\WaferPositionInfo.cs" />
+    <EmbeddedResource Include="FormMain.en-US.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.zh-CN.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.zh-Hant.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormAngleHeightCali.resx">
+      <DependentUpon>FormAngleHeightCali.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCalibration.resx">
+      <DependentUpon>FormCalibration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormChuckHeightVerify.resx">
+      <DependentUpon>FormChuckHeightVerify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormDebug.resx">
+      <DependentUpon>FormDebug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFARolling.resx">
+      <DependentUpon>FormFARolling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormHeightCalibrate.resx">
+      <DependentUpon>FormHeightCalibrate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormHeightDisplay.resx">
+      <DependentUpon>FormHeightDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormHeightScan.resx">
+      <DependentUpon>FormHeightScan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormHeightStableTest.resx">
+      <DependentUpon>FormHeightStableTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormInstrumentControl.resx">
+      <DependentUpon>FormInstrumentControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormLeadScrewCali.resx">
+      <DependentUpon>FormLeadScrewCali.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormLeadscrewCompensate.resx">
+      <DependentUpon>FormLeadscrewCompensate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormMapping.resx">
+      <DependentUpon>FormMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormMoveToDutTest.resx">
+      <DependentUpon>FormMoveToDutTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormOtherDisplay.resx">
+      <DependentUpon>FormOtherDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormOtherSetting.resx">
+      <DependentUpon>FormOtherSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormPmSetting.resx">
+      <DependentUpon>FormPmSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormPositionCali.resx">
+      <DependentUpon>FormPositionCali.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormPowerStableTest.resx">
+      <DependentUpon>FormPowerStableTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormProberClean.resx">
+      <DependentUpon>FormProberClean.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSelectWaferMark.resx">
+      <DependentUpon>FormSelectWaferMark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSpecialPositionEdit.resx">
+      <DependentUpon>FormSpecialPositionEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTecDisplay.resx">
+      <DependentUpon>FormTecDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTempStableTest.resx">
+      <DependentUpon>FormTempStableTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormIOControl.resx">
+      <DependentUpon>FormIOControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCamera.resx">
+      <DependentUpon>FormCamera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormVisionMotionCalibration.resx">
+      <DependentUpon>FormVisionMotionCalibration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormWorkPositionSetting.resx">
+      <DependentUpon>FormWorkPositionSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalStrings.en-US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalStrings.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalStrings.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalStrings.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalStrings.zh-Hant.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalStrings.zh-Hant.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyControl\ControlCamera.resx">
+      <DependentUpon>ControlCamera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaferDef\ControlDie.resx">
+      <DependentUpon>ControlDie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaferDef\ControlWafer.resx">
+      <DependentUpon>ControlWafer.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Query\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\config_gui.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configuration\config_piezo.xml" />
+    <Content Include="Configuration\config_static_information.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configuration\config_requests.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultAuthentication.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LTDMC.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ArrowDown.png" />
+    <Content Include="Resources\Png\ArrowDown.png" />
+    <Content Include="Resources\ProbeContact.png" />
+    <Content Include="Resources\ProbeSeperate.png" />
+    <Content Include="Resources\ProbeTest.png" />
+    <Content Include="Resources\refresh.png" />
+    <Content Include="Resources\RemoveItem.png" />
+    <Content Include="Resources\scanning.png" />
+    <None Include="Resources\WaveForm.png" />
+    <Content Include="Resources\公司logo.ico" />
+    <Content Include="Resources\删除2.png" />
+    <Content Include="Resources\勾选.png" />
+    <Content Include="Resources\单线圆形.png" />
+    <Content Include="Resources\定位.png" />
+    <Content Include="Resources\导入.png" />
+    <Content Include="Resources\导出.png" />
+    <Content Include="Resources\方向.png" />
+    <Content Include="Resources\添加_创建.png" />
+    <Content Include="Resources\矩形.png" />
+    <Content Include="公司logo.ico" />
+    <None Include="Resources\测量.png" />
+    <None Include="Resources\网格 %281%29.png" />
+    <None Include="Resources\删除.png" />
+    <None Include="Resources\启用.png" />
+    <None Include="Resources\回到原点.png" />
+    <None Include="Resources\标记.png" />
+    <None Include="Resources\upload.png" />
+    <None Include="Resources\upload %281%29.png" />
+    <None Include="Resources\TestOrder4.png" />
+    <None Include="Resources\TestOrder3.png" />
+    <None Include="Resources\TestOrder2.png" />
+    <None Include="Resources\TestOrder1.png" />
+    <None Include="Resources\size.png" />
+    <None Include="Resources\Png\RedLight.png" />
+    <None Include="Resources\Png\GreenLight.png" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\origin.png" />
+    <None Include="Resources\OFF.png" />
+    <None Include="Resources\ON.png" />
+    <None Include="Resources\Max.png" />
+    <None Include="Resources\importItem.png" />
+    <None Include="Resources\LightDe.png" />
+    <None Include="Resources\LightAdd.png" />
+    <None Include="Resources\clear %284%29.png" />
+    <Content Include="Resources\add.png" />
+    <Content Include="Resources\cal.png" />
+    <Content Include="Resources\close %281%29.png" />
+    <Content Include="Resources\Excel %282%29.png" />
+    <Content Include="Resources\file-open.png" />
+    <Content Include="Resources\Gif\right_arrow.gif" />
+    <Content Include="Resources\Min.png" />
+    <Content Include="Resources\Png\OFF.png" />
+    <Content Include="Resources\Png\ON.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MotionStageDriver\MotionStageDriver\MotionStageDriver\MyMotionStageDriver.csproj">
+      <Project>{32531efe-a81b-482c-ae6a-9d4d49a5b8b3}</Project>
+      <Name>MyMotionStageDriver</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

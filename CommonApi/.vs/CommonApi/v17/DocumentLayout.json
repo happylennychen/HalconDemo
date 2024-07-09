@@ -1,0 +1,232 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Work\\code\\developing\\20240219\\CommonApi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|d:\\work\\code\\developing\\20240219\\commonapi\\commonapi\\myi18n\\enumlanguage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\myi18n\\enumlanguage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|d:\\work\\code\\developing\\20240219\\commonapi\\commonapi\\myi18n\\formresourceculture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\myi18n\\formresourceculture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|d:\\work\\code\\developing\\20240219\\commonapi\\commonapi\\myi18n\\resourceculture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\myi18n\\resourceculture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|d:\\work\\code\\developing\\20240219\\commonapi\\commonapi\\mycommunication\\communicationconstant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\mycommunication\\communicationconstant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|D:\\Work\\code\\developing\\20240219\\CommonApi\\commonapi\\mycommunication\\myremotedisconnectedexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\mycommunication\\myremotedisconnectedexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|D:\\Work\\code\\developing\\20240219\\CommonApi\\commonapi\\myconstant\\commonrequesttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\myconstant\\commonrequesttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|D:\\Work\\code\\developing\\20240219\\CommonApi\\commonapi\\myconstant\\commonquerytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\myconstant\\commonquerytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|D:\\Work\\code\\developing\\20240219\\CommonApi\\commonapi\\myenum\\enumresponseid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\myenum\\enumresponseid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|D:\\Work\\code\\developing\\20240219\\CommonApi\\commonapi\\myenum\\enumrequeststatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\myenum\\enumrequeststatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|D:\\Work\\code\\developing\\20240219\\CommonApi\\commonapi\\myinitialization\\iinitializing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\myinitialization\\iinitializing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|D:\\Work\\code\\developing\\20240219\\CommonApi\\commonapi\\myutility\\mystaticutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\myutility\\mystaticutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|D:\\Work\\code\\developing\\20240219\\CommonApi\\commonapi\\myutility\\myrandomutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\myutility\\myrandomutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|D:\\Work\\code\\developing\\20240219\\CommonApi\\commonapi\\myutility\\mylogutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65AB2881-A894-4ABB-A095-5B6F40EBD658}|CommonApi\\CommonApi.csproj|solutionrelative:commonapi\\myutility\\mylogutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormResourceCulture.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyI18N\\FormResourceCulture.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyI18N\\FormResourceCulture.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyI18N\\FormResourceCulture.cs",
+              "RelativeToolTip": "CommonApi\\MyI18N\\FormResourceCulture.cs",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAuwHoAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-19T08:02:32.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ResourceCulture.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyI18N\\ResourceCulture.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyI18N\\ResourceCulture.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyI18N\\ResourceCulture.cs",
+              "RelativeToolTip": "CommonApi\\MyI18N\\ResourceCulture.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-19T08:01:12.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EnumLanguage.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyI18N\\EnumLanguage.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyI18N\\EnumLanguage.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyI18N\\EnumLanguage.cs",
+              "RelativeToolTip": "CommonApi\\MyI18N\\EnumLanguage.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-19T08:00:16.771Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MyRemoteDisconnectedException.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyCommunication\\MyRemoteDisconnectedException.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyCommunication\\MyRemoteDisconnectedException.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyCommunication\\MyRemoteDisconnectedException.cs",
+              "RelativeToolTip": "CommonApi\\MyCommunication\\MyRemoteDisconnectedException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-18T00:39:26.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IInitializing.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyInitialization\\IInitializing.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyInitialization\\IInitializing.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyInitialization\\IInitializing.cs",
+              "RelativeToolTip": "CommonApi\\MyInitialization\\IInitializing.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-18T00:38:50.53Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CommunicationConstant.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyCommunication\\CommunicationConstant.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyCommunication\\CommunicationConstant.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyCommunication\\CommunicationConstant.cs",
+              "RelativeToolTip": "CommonApi\\MyCommunication\\CommunicationConstant.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-18T00:38:06.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EnumRequestStatus.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyEnum\\EnumRequestStatus.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyEnum\\EnumRequestStatus.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyEnum\\EnumRequestStatus.cs",
+              "RelativeToolTip": "CommonApi\\MyEnum\\EnumRequestStatus.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-18T00:38:06.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CommonRequestType.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyConstant\\CommonRequestType.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyConstant\\CommonRequestType.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyConstant\\CommonRequestType.cs",
+              "RelativeToolTip": "CommonApi\\MyConstant\\CommonRequestType.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-18T00:38:06.96Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CommonQueryType.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyConstant\\CommonQueryType.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyConstant\\CommonQueryType.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyConstant\\CommonQueryType.cs",
+              "RelativeToolTip": "CommonApi\\MyConstant\\CommonQueryType.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-18T00:38:06.961Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "EnumResponseId.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyEnum\\EnumResponseId.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyEnum\\EnumResponseId.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyEnum\\EnumResponseId.cs",
+              "RelativeToolTip": "CommonApi\\MyEnum\\EnumResponseId.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-18T00:38:06.962Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MyStaticUtility.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyUtility\\MyStaticUtility.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyUtility\\MyStaticUtility.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyUtility\\MyStaticUtility.cs",
+              "RelativeToolTip": "CommonApi\\MyUtility\\MyStaticUtility.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-18T00:38:07.475Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MyRandomUtility.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyUtility\\MyRandomUtility.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyUtility\\MyRandomUtility.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyUtility\\MyRandomUtility.cs",
+              "RelativeToolTip": "CommonApi\\MyUtility\\MyRandomUtility.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAuwAQAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-18T00:38:07.476Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MyLogUtility.cs",
+              "DocumentMoniker": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyUtility\\MyLogUtility.cs",
+              "RelativeDocumentMoniker": "CommonApi\\MyUtility\\MyLogUtility.cs",
+              "ToolTip": "D:\\Work\\code\\developing\\20240219\\CommonApi\\CommonApi\\MyUtility\\MyLogUtility.cs",
+              "RelativeToolTip": "CommonApi\\MyUtility\\MyLogUtility.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAAAB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-18T00:38:07.477Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

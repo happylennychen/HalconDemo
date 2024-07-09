@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9A055DBE-AEEF-49E2-90C3-3171EDE02140}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyInstruments</RootNamespace>
+    <AssemblyName>MyInstruments</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonApi\CommonApi\bin\Debug\CommonApi.dll</HintPath>
+    </Reference>
+    <Reference Include="halcondotnet, Version=18.11.0.1, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\halcondotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="Ivi.Driver.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>C:\Windows\assembly\GAC_64\Ivi.Driver.Interop\1.0.0.0__a128c98f1d7717c1\Ivi.Driver.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Ivi.LxiSync.Interop, Version=1.0.4.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>C:\Windows\assembly\GAC_64\Ivi.LxiSync.Interop\1.0.4.0__a128c98f1d7717c1\Ivi.LxiSync.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Ivi.Visa, Version=7.2.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v2.0.50727\VISA.NET Shared Components 7.2.0\Ivi.Visa.dll</HintPath>
+    </Reference>
+    <Reference Include="Keithley.Ke26XXA.Interop, Version=1.9.0.0, Culture=neutral, PublicKeyToken=65cff6f5578f3c89, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>C:\Windows\assembly\GAC_64\Keithley.Ke26XXA.Interop\1.9.0.0__65cff6f5578f3c89\Keithley.Ke26XXA.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.Common, Version=19.1.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NationalInstruments.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.DAQmx, Version=23.8.45.49349, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NationalInstruments.DAQmx.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.Visa, Version=23.8.0.49286, Culture=neutral, PublicKeyToken=2eaa5af0834e221d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v4.0.30319\NI VISA.NET 23.8\NationalInstruments.Visa.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.5.2.5\lib\net46\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Instrument.cs" />
+    <Compile Include="InstrumentFactory.cs" />
+    <Compile Include="MyAltimeter\AmKeyenceCL3000.cs" />
+    <Compile Include="MyAltimeter\AmKunHang.cs" />
+    <Compile Include="MyAltimeter\AmNI600X.cs" />
+    <Compile Include="MyAltimeter\IAm.cs" />
+    <Compile Include="MyAltimeter\StandaloneAm.cs" />
+    <Compile Include="MyAltimeter\StandaloneAmFactory.cs" />
+    <Compile Include="MyAltimeter\UnsupportedAltimeterException.cs" />
+    <Compile Include="MyAltimeter\VirtualAm.cs" />
+    <Compile Include="MyCamera\ICamera.cs" />
+    <Compile Include="MyCamera\StandaloneCamera.cs" />
+    <Compile Include="MyCamera\StandaloneCameraFactory.cs" />
+    <Compile Include="MyCamera\UnsupportedCameraException.cs" />
+    <Compile Include="MyCamera\USBCamera.cs" />
+    <Compile Include="MyCamera\VirtualCamera.cs" />
+    <Compile Include="MyElecLens\ElecLensPomeas.cs" />
+    <Compile Include="MyElecLens\IElecLens.cs" />
+    <Compile Include="MyElecLens\StandaloneElecLens.cs" />
+    <Compile Include="MyElecLens\StandaloneElecLensFactory.cs" />
+    <Compile Include="MyElecLens\UnsupportedElecLensException.cs" />
+    <Compile Include="MyElecLens\VirtualElecLens.cs" />
+    <Compile Include="MyEnum\EnumInstrumentCategory.cs" />
+    <Compile Include="MyEnum\EnumInstrumentVendor.cs" />
+    <Compile Include="MyEnum\EnumModelDH.cs" />
+    <Compile Include="MyEnum\EnumModelJdsu.cs" />
+    <Compile Include="MyEnum\EnumModelKeithley.cs" />
+    <Compile Include="MyEnum\EnumModelKeyence.cs" />
+    <Compile Include="MyEnum\EnumModelKeysight.cs" />
+    <Compile Include="MyEnum\EnumModelKH.cs" />
+    <Compile Include="MyEnum\EnumModelNI.cs" />
+    <Compile Include="MyEnum\EnumModelOmron.cs" />
+    <Compile Include="MyEnum\EnumModelPomeas.cs" />
+    <Compile Include="MyEnum\EnumModelThka.cs" />
+    <Compile Include="MyEnum\EnumModelYuDian.cs" />
+    <Compile Include="MyEnum\EnumModelZS.cs" />
+    <Compile Include="MyEnum\EnumOpticPowerUnitType.cs" />
+    <Compile Include="MyException\InvalidInstrumentSettingValueException.cs" />
+    <Compile Include="MyException\InvalidSlotOrChannelOfInstrumentException.cs" />
+    <Compile Include="MyException\UnsupportedInstrumentException.cs" />
+    <Compile Include="MyFunc\CommonFunc.cs" />
+    <Compile Include="MyInitialization\InitializingInstruments.cs" />
+    <Compile Include="MyLed\ILed.cs" />
+    <Compile Include="MyLed\LedZs.cs" />
+    <Compile Include="MyLed\StandaloneLed.cs" />
+    <Compile Include="MyLed\StandaloneLedFactory.cs" />
+    <Compile Include="MyLed\UnsupportedLedException.cs" />
+    <Compile Include="MyLed\VirtualLed.cs" />
+    <Compile Include="MyOpm\EnumOpmPowerRangeType.cs" />
+    <Compile Include="MyOpm\EnumKeysightOpmSetting.cs" />
+    <Compile Include="MyOpm\EnumOpmTimeUnitType.cs" />
+    <Compile Include="MyOpm\IOpm.cs" />
+    <Compile Include="MyOpm\IOpmSettingUtility.cs" />
+    <Compile Include="MyOpm\OpmConstant.cs" />
+    <Compile Include="MyOpm\OpmKeysightN774x.cs" />
+    <Compile Include="MyOpm\OpmSettingUtilityKeysight.cs" />
+    <Compile Include="MyOpm\StandaloneOpm.cs" />
+    <Compile Include="MyOpm\StandaloneOpmFactory.cs" />
+    <Compile Include="MyOpm\StandaloneOpmWithTriggerIn.cs" />
+    <Compile Include="MyOpm\VirtualOpmWithTriggerIn.cs" />
+    <Compile Include="MyOs\IOs.cs" />
+    <Compile Include="MyOs\OsJdsuSB.cs" />
+    <Compile Include="MyOs\StandaloneOs.cs" />
+    <Compile Include="MyOs\StandaloneOsFactory.cs" />
+    <Compile Include="MyOs\UnsupportedOsException.cs" />
+    <Compile Include="MyOs\VirtualOs.cs" />
+    <Compile Include="MyPma\Pma.cs" />
+    <Compile Include="MyPma\PmaFactory.cs" />
+    <Compile Include="MyPma\PmaKeysight816x.cs" />
+    <Compile Include="MyPma\UnsupportedPmaException.cs" />
+    <Compile Include="MyPma\VirtualPma.cs" />
+    <Compile Include="MySmu\EnumSmuMeasurementType.cs" />
+    <Compile Include="MySmu\EnumKeithleySmuSetting.cs" />
+    <Compile Include="MySmu\EnumSmuSourceType.cs" />
+    <Compile Include="MySmu\ISmu.cs" />
+    <Compile Include="MySmu\SmuKeithley2602B.cs" />
+    <Compile Include="MySmu\StandaloneSmu.cs" />
+    <Compile Include="MySmu\StandaloneSmuFactory.cs" />
+    <Compile Include="MySmu\VirtualSmu.cs" />
+    <Compile Include="MyTec\ITec.cs" />
+    <Compile Include="MyTec\StandaloneTec.cs" />
+    <Compile Include="MyTec\StandaloneTecFactory.cs" />
+    <Compile Include="MyTec\TecOmron5ECC.cs" />
+    <Compile Include="MyTec\TecThka.cs" />
+    <Compile Include="MyTec\TecYuDian.cs" />
+    <Compile Include="MyTec\UnsupportedTecException.cs" />
+    <Compile Include="MyTec\VirtualTec.cs" />
+    <Compile Include="MyTls\EnumKeysightTlsSetting.cs" />
+    <Compile Include="MyTls\ITls.cs" />
+    <Compile Include="MyTls\ITlsSettingUtility.cs" />
+    <Compile Include="MyTls\StandaloneTls.cs" />
+    <Compile Include="MyTls\StandaloneTlsWithTriggerOut.cs" />
+    <Compile Include="MyTls\TlsSettingUtilityKeysight.cs" />
+    <Compile Include="MyTls\VirtualTlsWithTriggerOut.cs" />
+    <Compile Include="MyUtility\CheckingInstrumentSettingItem.cs" />
+    <Compile Include="MyUtility\InstrumentConfig.cs" />
+    <Compile Include="MyUtility\InstrumentConstant.cs" />
+    <Compile Include="MyUtility\InstrumentUsage.cs" />
+    <Compile Include="MyUtility\InstrumentUtility.cs" />
+    <Compile Include="MyVisaDriver\ComConfig.cs" />
+    <Compile Include="MyVisaDriver\IVisaDriver.cs" />
+    <Compile Include="MyVisaDriver\NiVisaDriverImpl.cs" />
+    <Compile Include="MyVisaDriver\VisaDriverFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
