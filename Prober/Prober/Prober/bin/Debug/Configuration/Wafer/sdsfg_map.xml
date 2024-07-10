@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<WaferMapInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <IsRotation>0</IsRotation>
+  <isUserCapAltimeter>false</isUserCapAltimeter>
+  <isUserCapAltimeterLeft>true</isUserCapAltimeterLeft>
+  <Type>sdsfg</Type>
+  <CtlRows>0</CtlRows>
+  <CtlCols>0</CtlCols>
+  <DieWidth>0</DieWidth>
+  <DieHeight>0</DieHeight>
+  <DieRows>0</DieRows>
+  <DieColumns>0</DieColumns>
+  <MarkDieRowIndex>0</MarkDieRowIndex>
+  <MarkDieColumnIndex>0</MarkDieColumnIndex>
+  <MarkRow>1640.5</MarkRow>
+  <MarkColumn>2258.01</MarkColumn>
+  <MarkChuckX>175000</MarkChuckX>
+  <MarkChuckY>174999.9</MarkChuckY>
+  <MarkCcdX>-25900</MarkCcdX>
+  <MarkCcdY>-25299.65</MarkCcdY>
+  <MarkCcdZ>-34900</MarkCcdZ>
+  <MarkDeltaChuckX>0</MarkDeltaChuckX>
+  <MarkDeltaChuckY>0</MarkDeltaChuckY>
+  <MarkExposure>2500</MarkExposure>
+  <MarkZoom>19342</MarkZoom>
+  <isUseMarkPad>false</isUseMarkPad>
+  <isOcrFirstReticleOnly>false</isOcrFirstReticleOnly>
+  <MarkPadRow>NaN</MarkPadRow>
+  <MarkPadColumn>NaN</MarkPadColumn>
+  <MarkPadChuckX>NaN</MarkPadChuckX>
+  <MarkPadChuckY>NaN</MarkPadChuckY>
+  <MarkPadRow_2>NaN</MarkPadRow_2>
+  <MarkPadColumn_2>NaN</MarkPadColumn_2>
+  <MarkPadChuckX_2>NaN</MarkPadChuckX_2>
+  <MarkPadChuckY_2>NaN</MarkPadChuckY_2>
+  <RefDieRowIndex1>0</RefDieRowIndex1>
+  <RefDieRowIndex2>0</RefDieRowIndex2>
+  <RefDieRowIndex3>0</RefDieRowIndex3>
+  <RefDieRowIndex4>0</RefDieRowIndex4>
+  <RefDieColumnIndex1>0</RefDieColumnIndex1>
+  <RefDieColumnIndex2>0</RefDieColumnIndex2>
+  <RefDieColumnIndex3>0</RefDieColumnIndex3>
+  <RefDieColumnIndex4>0</RefDieColumnIndex4>
+  <Height_LeftZ>0</Height_LeftZ>
+  <Height_ChuckX_Left>0</Height_ChuckX_Left>
+  <Height_ChuckY_Left>0</Height_ChuckY_Left>
+  <Height_RightZ>0</Height_RightZ>
+  <Height_ChuckX_Right>0</Height_ChuckX_Right>
+  <Height_ChuckY_Right>0</Height_ChuckY_Right>
+  <Height_LeftCap>0</Height_LeftCap>
+  <Height_RightCap>0</Height_RightCap>
+  <Dies />
+  <HomeDieName />
+  <HomeDieRowIndex>0</HomeDieRowIndex>
+  <HomeDieColIndex>0</HomeDieColIndex>
+  <SubDies />
+  <NameType>1</NameType>
+</WaferMapInfo>

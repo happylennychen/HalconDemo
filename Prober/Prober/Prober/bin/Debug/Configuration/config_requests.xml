@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+	<common_requests description="from ProberApi.dll">
+		<request full_class_name="ProberApi.MyRequest.RequestAxisMoveAbsolute" />
+		<request full_class_name="ProberApi.MyRequest.RequestAxisMoveRelative" />
+		<request full_class_name="ProberApi.MyRequest.RequestConnectAllInstruments" />
+		<request full_class_name="ProberApi.MyRequest.RequestDisconnectAllInstruments" />
+		<request full_class_name="ProberApi.MyRequest.RequestCrossCoupling2d" />
+		<request full_class_name="ProberApi.MyRequest.RequestSpiralCoupling2d" />
+		<request full_class_name="ProberApi.MyRequest.RequestAxisSetSpeed" />
+	</common_requests>
+
+	<private_requests description="from current prober.exe">
+		<request full_class_name="Prober.Request.RequestMoveToDut" />
+		<request full_class_name="Prober.Request.RequestSaveImage" />
+		<request full_class_name="Prober.Request.RequestSetLightColor" />
+	</private_requests>
+</config>

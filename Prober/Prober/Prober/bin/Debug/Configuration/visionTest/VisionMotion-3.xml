@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<PlatInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Px>
+    <double>2584.52</double>
+    <double>2583.75</double>
+    <double>1010.33</double>
+    <double>1010.6</double>
+  </Px>
+  <Py>
+    <double>2674.54</double>
+    <double>1101.4</double>
+    <double>1101.59</double>
+    <double>2674.59</double>
+  </Py>
+  <Qx>
+    <double>171399.4</double>
+    <double>170599.4</double>
+    <double>170599.4</double>
+    <double>171399.4</double>
+  </Qx>
+  <Qy>
+    <double>185199.2</double>
+    <double>185199.2</double>
+    <double>185999.2</double>
+    <double>185999.2</double>
+  </Qy>
+</PlatInfo>

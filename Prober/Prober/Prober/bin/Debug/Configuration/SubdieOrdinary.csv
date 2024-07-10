@@ -1,0 +1,5 @@
+SubDie,Left X,Left Y,Right X,Right Y,Pad X,Pad Y
+D1,0,0,0,0,0,0
+D2,1100,0,0,0,0,0
+D3,1100,-880,0,0,0,0
+D4,0,-880,0,0,0,0

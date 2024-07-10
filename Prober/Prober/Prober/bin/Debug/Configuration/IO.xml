@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<IOInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CardIndex>0</CardIndex>
+  <SizeAll>0</SizeAll>
+  <Chip>1</Chip>
+  <Size2>2</Size2>
+  <Size4>3</Size4>
+  <Size6>4</Size6>
+  <Size8>5</Size8>
+  <Size12>6</Size12>  
+  <RfPlat>7</RfPlat>
+  <PdPlat>8</PdPlat>
+  <Red>10</Red>
+  <Yellow>11</Yellow>
+  <Green>12</Green>
+  <Light>13</Light>  
+  <VaccumInput>3</VaccumInput>
+  <PressureInput1>4</PressureInput1>
+  <PressureInput2>5</PressureInput2>
+</IOInfo>

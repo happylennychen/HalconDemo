@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <control_mode description="LOCAL_ONLY or REMOTE_FIRST">REMOTE_FIRST</control_mode>
+  <listening>
+    <ip_v4>127.0.0.1</ip_v4>
+    <port description="port value should &gt;=50000, default value is 50011">55511</port>
+  </listening>
+  <language description="ENGLISH,简体中文,繁體中文">简体中文</language>
+</config>

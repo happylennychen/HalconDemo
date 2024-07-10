@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<CompParamInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coderReverse>0</coderReverse>
+  <sevonLevel>0</sevonLevel>
+  <limitPos>-9999999</limitPos>
+  <homeOffset>5000</homeOffset>
+  <distancePerPulse>0.1</distancePerPulse>
+  <minVel>500</minVel>
+  <maxVel>10000</maxVel>
+  <posLimit>140000</posLimit>
+  <negLimit>0</negLimit>
+  <numPos>48</numPos>
+  <posStart>0</posStart>
+  <posDis>144000</posDis>
+  <compDataPath>C:\Users\Administrator\Desktop\激光干涉数据\Z轴带负载标定步距0.5偏移-1.8.rtl</compDataPath>
+</CompParamInfo>
