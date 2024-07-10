@@ -34,11 +34,18 @@
             this.panel_top = new System.Windows.Forms.Panel();
             this.hw_Top = new Prober.MyControl.ControlCamera();
             this.panel_Side = new System.Windows.Forms.Panel();
-            this.hw_Side = new Prober.MyControl.ControlCamera();
+            this.tabCtrl_Side = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.hw_Front = new Prober.MyControl.ControlCamera();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.hw_Rear = new Prober.MyControl.ControlCamera();
             this.panel_Camera = new System.Windows.Forms.Panel();
             this.tableLayoutPanel_Camera.SuspendLayout();
             this.panel_top.SuspendLayout();
             this.panel_Side.SuspendLayout();
+            this.tabCtrl_Side.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.panel_Camera.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,20 +84,61 @@
             // 
             // panel_Side
             // 
-            this.panel_Side.Controls.Add(this.hw_Side);
+            this.panel_Side.Controls.Add(this.tabCtrl_Side);
             this.panel_Side.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_Side.Location = new System.Drawing.Point(963, 3);
             this.panel_Side.Name = "panel_Side";
             this.panel_Side.Size = new System.Drawing.Size(954, 850);
             this.panel_Side.TabIndex = 3;
             // 
-            // hw_Side
+            // tabCtrl_Side
             // 
-            this.hw_Side.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hw_Side.Location = new System.Drawing.Point(0, 0);
-            this.hw_Side.Name = "hw_Side";
-            this.hw_Side.Size = new System.Drawing.Size(954, 850);
-            this.hw_Side.TabIndex = 0;
+            this.tabCtrl_Side.Controls.Add(this.tabPage1);
+            this.tabCtrl_Side.Controls.Add(this.tabPage2);
+            this.tabCtrl_Side.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabCtrl_Side.Location = new System.Drawing.Point(0, 0);
+            this.tabCtrl_Side.Name = "tabCtrl_Side";
+            this.tabCtrl_Side.SelectedIndex = 0;
+            this.tabCtrl_Side.Size = new System.Drawing.Size(954, 850);
+            this.tabCtrl_Side.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.hw_Front);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(946, 824);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Front";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // hw_Front
+            // 
+            this.hw_Front.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hw_Front.Location = new System.Drawing.Point(3, 3);
+            this.hw_Front.Name = "hw_Front";
+            this.hw_Front.Size = new System.Drawing.Size(940, 818);
+            this.hw_Front.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.hw_Rear);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(946, 824);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Rear";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // hw_Rear
+            // 
+            this.hw_Rear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hw_Rear.Location = new System.Drawing.Point(3, 3);
+            this.hw_Rear.Name = "hw_Rear";
+            this.hw_Rear.Size = new System.Drawing.Size(940, 818);
+            this.hw_Rear.TabIndex = 0;
             // 
             // panel_Camera
             // 
@@ -114,6 +162,9 @@
             this.tableLayoutPanel_Camera.ResumeLayout(false);
             this.panel_top.ResumeLayout(false);
             this.panel_Side.ResumeLayout(false);
+            this.tabCtrl_Side.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.panel_Camera.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -126,6 +177,10 @@
         private System.Windows.Forms.Panel panel_top;
         public MyControl.ControlCamera hw_Top;
         private System.Windows.Forms.Panel panel_Side;
-        private MyControl.ControlCamera hw_Side;
+        private MyControl.ControlCamera hw_Front;
+        private System.Windows.Forms.TabControl tabCtrl_Side;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private MyControl.ControlCamera hw_Rear;
     }
 }

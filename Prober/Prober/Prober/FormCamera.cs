@@ -18,8 +18,9 @@ using MyMotionStageDriver.MyStageAxis;
 
 namespace Prober {
     public partial class FormCamera : Form {
-        private StandaloneCamera cameraTop;   
-        private StandaloneCamera cameraSide;
+        private StandaloneCamera cameraTop;
+        private StandaloneCamera cameraFront;
+        private StandaloneCamera cameraRear;
         private StandaloneElecLens eLens ;
         List<string> zoomList = new List<string>();
 
@@ -40,8 +41,9 @@ namespace Prober {
 
             //获取仪表
             var getResult2 = GetInstrument("top_camera");   
-            var getResult4 = GetInstrument("side_camera");            
-            var getResult6 = GetInstrument("elens_zoom");            
+            var getResult4 = GetInstrument("front_camera");            
+            var getResult6 = GetInstrument("elens_zoom");
+            var getResult8 = GetInstrument("rear_camera");
         }
 
         public (bool isOk, string errorText, Instrument instrument) GetInstrument(string instrumentUsageId)
@@ -66,11 +68,17 @@ namespace Prober {
                         cameraTop.SetWidth(4504);
                         cameraTop.SetHeight(4096);
                     }
-                    else if (instrumentUsage.InstrumentId == "ccd_side")
+                    else if (instrumentUsage.InstrumentId == "ccd_front")
                     {
-                        cameraSide = instrument as StandaloneCamera;
-                        cameraSide.SetWidth(2448);
-                        cameraSide.SetHeight(2048);
+                        cameraFront = instrument as StandaloneCamera;
+                        cameraFront.SetWidth(2448);
+                        cameraFront.SetHeight(2048);
+                    }
+                    else if (instrumentUsage.InstrumentId == "ccd_rear")
+                    {
+                        cameraRear = instrument as StandaloneCamera;
+                        cameraRear.SetWidth(2448);
+                        cameraRear.SetHeight(2048);
                     }
                     else
                     {
@@ -119,12 +127,16 @@ namespace Prober {
                 hw_Top.ZoomSelect = TopCameraZoom;
                 hw_Top.SetZoomList(zoomList);
                 hw_Top.SetPixLenCoef(1.2); //待确认
+
+                hw_Front.ReportMessage = this.ReportMessage;
+                hw_Front.InitCamera(cameraFront, "Front",false);
+                hw_Front.MaxMinClick = SideCameraMaxMinClick;
+                hw_Front.SetPixLenCoef(1.2); //待确认
                                              //
-                hw_Side.ReportMessage = this.ReportMessage;
-                hw_Side.InitCamera(cameraSide, "Rear",false);
-                hw_Side.MaxMinClick = SideCameraMaxMinClick;
-                hw_Side.SetPixLenCoef(1.2); //待确认   
-                hw_Side._showInfo.IsMirrorByCol = true; 
+                hw_Rear.ReportMessage = this.ReportMessage;
+                hw_Rear.InitCamera(cameraRear, "Rear",false);
+                hw_Rear.MaxMinClick = SideCameraMaxMinClick;
+                hw_Rear.SetPixLenCoef(1.2); //待确认   
             }
             catch (Exception ex)
             {
