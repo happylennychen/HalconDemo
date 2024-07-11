@@ -279,8 +279,9 @@ namespace MyInstruments.MyUtility {
                     return false;
                 }
 
-                XElement xeInstrumentInitialSettings = xeRoot.Element("instrument_initial_settings");
-                return ReadInstrumentInitialSettings(xeInstrumentInitialSettings);
+                //XElement xeInstrumentInitialSettings = xeRoot.Element("instrument_initial_settings");
+                //return ReadInstrumentInitialSettings(xeInstrumentInitialSettings);
+                return true;
             } catch (Exception ex) {
                 LOGGER.Error(MyLogUtility.GenerateExceptionLog(ex));
                 return false;

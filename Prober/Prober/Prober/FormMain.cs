@@ -298,10 +298,10 @@ namespace Prober {
                     Thread.Sleep(TimeSpan.FromSeconds(0.5));
                     form.EndRow(index, true);
 
-                    if (!UpdateTecStatus(out message)) {
-                        return (false, message);
-                    }
-
+                    //if (!UpdateTecStatus(out message)) {
+                    //    return (false, message);
+                    //}
+                    /*
                     index = 2;
                     form.BeginRow(index);
                     result = motionStageInitializer.Run();
@@ -400,7 +400,8 @@ namespace Prober {
                     }
                     Thread.Sleep(TimeSpan.FromSeconds(0.5));
                     form.EndRow(index, true);
-
+                    */
+                    /*
                     index = 7;
                     form.BeginRow(index);
                     result = InitializeGui();
@@ -425,7 +426,7 @@ namespace Prober {
                         LOGGER.Error(message);
                         return (false, message);
                     }                    
-
+                    */
                     return (true, string.Empty);
                 });
             } finally {
@@ -459,11 +460,11 @@ namespace Prober {
                 miCalibration.Enabled = true;
                 miDebug.Enabled = true;
 
-                if (waferHandle.NeedHoming())
-                {
-                    SetUiState(false);
-                    MessageBox.Show("机台重启后需要回零");
-                }
+                //if (waferHandle.NeedHoming())
+                //{
+                //    SetUiState(false);
+                //    MessageBox.Show("机台重启后需要回零");
+                //}
 
                 ShowCamera(sharedObjects);                
 
