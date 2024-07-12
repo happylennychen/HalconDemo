@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+	<common_queries description="from ProberApi.dll">
+		<query full_class_name="ProberApi.MyQuery.QueryModel" />
+		<query full_class_name="ProberApi.MyQuery.QuerySerialNumber" />
+		<query full_class_name="ProberApi.MyQuery.QuerySoftwareFrameworkVersion" />
+		<query full_class_name="ProberApi.MyQuery.QuerySoftwareVersion" />
+		<query full_class_name="ProberApi.MyQuery.QueryAxisPosition" />
+		<query full_class_name="ProberApi.MyQuery.QueryAxisSpeed" />
+	</common_queries>
+
+	<private_queries description="from current prober.exe">
+		<!--
+		<query full_class_name="Prober.MyQuery.xxxxx" />
+		-->
+	</private_queries>
+</config>

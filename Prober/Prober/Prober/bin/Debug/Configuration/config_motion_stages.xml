@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config  version="1.0" is_virtual_running="false">
+	<motion_controllers>		
+		<motion_controller type_id="1" vendor="LEISAI" model="DMC3000">
+			<motion_controller_board address="0">
+				<settings>
+				</settings>
+				<channels>
+					<channel id="0" >
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="0"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="1"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="1"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="false"/>
+							<setting key="S_TIME" value="0.0"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.05"/>
+							<setting key="MINIMUM_VELOCITY" value="10000"/>
+							<setting key="MAXIMUM_VELOCITY" value="25000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.005"/>
+						</settings>
+					</channel>
+					<channel id="1">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="2"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="1"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="1"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="true"/>
+							<setting key="S_TIME" value="0.0"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.05"/>
+							<setting key="MINIMUM_VELOCITY" value="10000"/>
+							<setting key="MAXIMUM_VELOCITY" value="25000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.005"/>
+						</settings>
+					</channel>
+					<channel id="2">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="2"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="0"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="1"/>
+							<setting key="HOMING_VELOCITY" value="1"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="true"/>
+							<setting key="S_TIME" value="0.0"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.05"/>
+							<setting key="MINIMUM_VELOCITY" value="10000"/>
+							<setting key="MAXIMUM_VELOCITY" value="25000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.005"/>
+						</settings>
+					</channel>
+					<channel id="3">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="2"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="1"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="1"/>
+							<setting key="HOMING_VELOCITY" value="1"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="true"/>
+							<setting key="S_TIME" value="0.0"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.05"/>
+							<setting key="MINIMUM_VELOCITY" value="10000"/>
+							<setting key="MAXIMUM_VELOCITY" value="25000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.005"/>
+						</settings>
+					</channel>
+					<channel id="4">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="2"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="1"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="1"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="true"/>
+							<setting key="S_TIME" value="0.0"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.05"/>
+							<setting key="MINIMUM_VELOCITY" value="10000"/>
+							<setting key="MAXIMUM_VELOCITY" value="25000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.005"/>
+						</settings>
+					</channel>
+					<channel id="5">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="2"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="1"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="1"/>
+							<setting key="HOMING_VELOCITY" value="1"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="true"/>
+							<setting key="S_TIME" value="0.0"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.05"/>
+							<setting key="MINIMUM_VELOCITY" value="10000"/>
+							<setting key="MAXIMUM_VELOCITY" value="25000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.005"/>
+						</settings>
+					</channel>
+					<channel id="6" >
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="0"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="0"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="1"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="true"/>
+							<setting key="S_TIME" value="0"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.1"/>
+							<setting key="MINIMUM_VELOCITY" value="5000"/>
+							<setting key="MAXIMUM_VELOCITY" value="20000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.05"/>
+						</settings>
+					</channel>
+					<channel id="7">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="2"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="0"/>
+							<setting key="HOMING_MODE" value="4"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="1"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="false"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.1"/>
+							<setting key="MINIMUM_VELOCITY" value="100000"/>
+							<setting key="MAXIMUM_VELOCITY" value="200000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.1"/>
+						</settings>
+					</channel>
+					<channel id="8">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="2"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="1"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="1"/>
+							<setting key="HOMING_VELOCITY" value="0"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="true"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.05"/>
+							<setting key="MINIMUM_VELOCITY" value="20000"/>
+							<setting key="MAXIMUM_VELOCITY" value="50000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.005"/>
+						</settings>
+					</channel>
+					<channel id="9">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="0"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="0"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="1"/>
+							<setting key="HOMING_VELOCITY" value="0"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="false"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.05"/>
+							<setting key="MINIMUM_VELOCITY" value="20000"/>
+							<setting key="MAXIMUM_VELOCITY" value="50000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.005"/>
+						</settings>
+					</channel>					
+				</channels>
+			</motion_controller_board>
+
+			<motion_controller_board address="1">
+				<settings>
+				</settings>
+				<channels>
+					<channel id="0" >
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="0"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="1"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="0"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="false"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.00015"/>
+							<setting key="MINIMUM_VELOCITY" value="5000"/>
+							<setting key="MAXIMUM_VELOCITY" value="10000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.1"/>
+						</settings>
+					</channel>
+					<channel id="1">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="0"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="0"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="0"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="false"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.0001"/>
+							<setting key="MINIMUM_VELOCITY" value="5000"/>
+							<setting key="MAXIMUM_VELOCITY" value="10000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.1"/>
+						</settings>
+					</channel>
+					<channel id="2">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="0"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="1"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="0"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="false"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.0001233"/>
+							<setting key="MINIMUM_VELOCITY" value="5000"/>
+							<setting key="MAXIMUM_VELOCITY" value="10000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.1"/>
+						</settings>
+					</channel>
+					<channel id="3">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="2"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="0"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="0"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="true"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.00015"/>
+							<setting key="MINIMUM_VELOCITY" value="5000"/>
+							<setting key="MAXIMUM_VELOCITY" value="10000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.1"/>
+						</settings>
+					</channel>
+					<channel id="4" >
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="0"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="0"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="0"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="false"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.0001"/>
+							<setting key="MINIMUM_VELOCITY" value="5000"/>
+							<setting key="MAXIMUM_VELOCITY" value="10000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.1"/>
+						</settings>
+					</channel>
+					<channel id="5">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="0"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="1"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="0"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="false"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.0001233"/>
+							<setting key="MINIMUM_VELOCITY" value="5000"/>
+							<setting key="MAXIMUM_VELOCITY" value="10000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.1"/>
+						</settings>
+					</channel>
+					<channel id="6">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="0"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="0"/>
+							<setting key="HOMING_MODE" value="4"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="1"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="true"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.1"/>
+							<setting key="MINIMUM_VELOCITY" value="100000"/>
+							<setting key="MAXIMUM_VELOCITY" value="200000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.1"/>
+						</settings>
+					</channel>
+					<channel id="7">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="0"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="0"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="0"/>
+							<setting key="HOMING_VELOCITY" value="0"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="false"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.000052"/>
+							<setting key="MINIMUM_VELOCITY" value="10000"/>
+							<setting key="MAXIMUM_VELOCITY" value="30000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.1"/>
+						</settings>
+					</channel>	
+					<channel id="8">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="2"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="0"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="1"/>
+							<setting key="HOMING_VELOCITY" value="0"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="true"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.2"/>
+							<setting key="MINIMUM_VELOCITY" value="10000"/>
+							<setting key="MAXIMUM_VELOCITY" value="25000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.01"/>
+						</settings>
+					</channel>
+					<channel id="9">
+						<settings>
+							<setting key="PULSE_OUT_MODE" value="2"/>
+							<setting key="ELECTRICAL_LEVEL_OF_ORIGIN" value="1"/>
+							<setting key="HOMING_MODE" value="12"/>
+							<setting key="HOMING_DIRECTION" value="1"/>
+							<setting key="HOMING_VELOCITY" value="0"/>
+							<setting key="EL_SIGNAL_ENABLED_STATUS" value="1"/>
+							<setting key="EL_SIGNAL_VALID_ELECTRICAL_LEVEL" value="1"/>
+							<setting key="IS_LIMIT_REVERSE" value="true"/>
+							<setting key="S_TIME" value="0.1"/>
+							<setting key="DISTANCE_PER_PULSE" value="0.1"/>
+							<setting key="MINIMUM_VELOCITY" value="80000"/>
+							<setting key="MAXIMUM_VELOCITY" value="200000"/>
+							<setting key="ACCELERATED_VELOCITY" value="0.005"/>
+						</settings>
+					</channel>					
+				</channels>
+			</motion_controller_board>
+		</motion_controller>
+		
+        <!--
+		<motion_controller type_id="2" vendor="SURUGA" model="DS102">
+			<motion_controller_board address="COM5" description="means serial port NO">
+				<settings>
+					波特率、数据位、停止位、校验位、流控制、流编码(二进制、ASCII)、缓冲区大小等
+					<setting></setting>
+				</settings>
+				<channels>
+					<channel id="0" >
+						<settings>
+							<setting key="软限位" value="2"/>
+							<setting key="origin类型" value="1"/>
+						</settings>
+					</channel>
+				</channels>
+			</motion_controller_board>
+			<settings>
+				波特率、数据位、停止位、校验位、流控制、流编码(二进制、ASCII)、缓冲区大小等
+				<setting></setting>
+			</settings>
+		</motion_controller>
+        -->        		    
+	</motion_controllers>
+
+	<stages>
+		<stage id="left_stage">
+			<axis id="left_stage_x" motion_controller_type_id="1" board_address="0" channel_id="0" axis_type="LINEAR" backlash="0" positive_direction="RIGHT" />
+			<axis id="left_stage_y" motion_controller_type_id="1" board_address="0" channel_id="1" axis_type="LINEAR" backlash="0" positive_direction="UP" />
+			<axis id="left_stage_z" motion_controller_type_id="1" board_address="0" channel_id="2" axis_type="LINEAR" backlash="0" positive_direction="UP" />
+			<axis id="left_stage_sx" motion_controller_type_id="1" board_address="1" channel_id="0" axis_type="ROTATION" backlash="0" positive_direction="" />
+			<axis id="left_stage_sy" motion_controller_type_id="1" board_address="1" channel_id="1" axis_type="ROTATION" backlash="0" positive_direction="" />
+			<axis id="left_stage_sz" motion_controller_type_id="1" board_address="1" channel_id="2" axis_type="ROTATION" backlash="0" positive_direction="" />
+		</stage>
+
+		<stage id="right_stage">
+			<axis id="right_stage_x" motion_controller_type_id="1" board_address="0" channel_id="3" axis_type="LINEAR" backlash="0" positive_direction="RIGHT" />
+			<axis id="right_stage_y" motion_controller_type_id="1" board_address="0" channel_id="4" axis_type="LINEAR" backlash="0" positive_direction="UP" />
+			<axis id="right_stage_z" motion_controller_type_id="1" board_address="0" channel_id="5" axis_type="LINEAR" backlash="0" positive_direction="UP" />
+			<axis id="right_stage_sx" motion_controller_type_id="1" board_address="1" channel_id="3" axis_type="ROTATION" backlash="0" positive_direction="" />
+			<axis id="right_stage_sy" motion_controller_type_id="1" board_address="1" channel_id="4" axis_type="ROTATION" backlash="0" positive_direction="" />
+			<axis id="right_stage_sz" motion_controller_type_id="1" board_address="1" channel_id="5" axis_type="ROTATION" backlash="0" positive_direction="" />
+		</stage>
+		
+		<stage id="chuck_stage">
+			<axis id="chuck_stage_x" motion_controller_type_id="1" board_address="1" channel_id="6" axis_type="LINEAR" backlash="0" positive_direction="RIGHT" />
+			<axis id="chuck_stage_y" motion_controller_type_id="1" board_address="0" channel_id="7" axis_type="LINEAR" backlash="0" positive_direction="UP" />
+			<axis id="chuck_stage_z" motion_controller_type_id="1" board_address="0" channel_id="6" axis_type="LINEAR" backlash="0" positive_direction="UP" />
+			<axis id="chuck_stage_sz" motion_controller_type_id="1" board_address="1" channel_id="7" axis_type="ROTATION" backlash="0" positive_direction="" />
+		</stage>
+		
+		<stage id="other_stage">
+			<axis id="ccd_stage_x" motion_controller_type_id="1" board_address="0" channel_id="8" axis_type="LINEAR" backlash="0" positive_direction="RIGHT" />
+			<axis id="ccd_stage_y" motion_controller_type_id="1" board_address="0" channel_id="9" axis_type="LINEAR" backlash="0" positive_direction="UP" />
+			<axis id="ccd_stage_z" motion_controller_type_id="1" board_address="1" channel_id="8" axis_type="LINEAR" backlash="0" positive_direction="UP" />
+			<axis id="height_stage_u" motion_controller_type_id="1" board_address="1" channel_id="9" axis_type="LINEAR" backlash="0" positive_direction="UP" />
+		</stage>			
+	</stages>
+
+    <axis_usages>
+    	<axis_usage id="ccd_x" stage_id="other_stage" axis_id="ccd_stage_x" description="" />
+		<axis_usage id="ccd_y" stage_id="other_stage" axis_id="ccd_stage_y" description="" />
+		<axis_usage id="ccd_z" stage_id="other_stage" axis_id="ccd_stage_z" description="" />
+
+		<axis_usage id="coupling_in_x" stage_id="left_stage" axis_id="left_stage_x" description="" />
+		<axis_usage id="coupling_in_y" stage_id="left_stage" axis_id="left_stage_y" description="" />
+		<axis_usage id="coupling_in_z" stage_id="left_stage" axis_id="left_stage_z" description="" />
+		<axis_usage id="coupling_in_sx" stage_id="left_stage" axis_id="left_stage_sx" description="" />
+		<axis_usage id="coupling_in_sy" stage_id="left_stage" axis_id="left_stage_sy" description="" />
+		<axis_usage id="coupling_in_sz" stage_id="left_stage" axis_id="left_stage_sz" description="" />
+
+		<axis_usage id="coupling_out_x" stage_id="right_stage" axis_id="right_stage_x" description="" />
+		<axis_usage id="coupling_out_y" stage_id="right_stage" axis_id="right_stage_y" description="" />
+		<axis_usage id="coupling_out_z" stage_id="right_stage" axis_id="right_stage_z" description="" />
+		<axis_usage id="coupling_out_sx" stage_id="right_stage" axis_id="right_stage_sx" description="" />
+		<axis_usage id="coupling_out_sy" stage_id="right_stage" axis_id="right_stage_sy" description="" />
+		<axis_usage id="coupling_out_sz" stage_id="right_stage" axis_id="right_stage_sz" description="" />
+
+		<axis_usage id="height_u" stage_id="other_stage" axis_id="height_stage_u" description="" />
+
+		<axis_usage id="chuck_x" stage_id="chuck_stage" axis_id="chuck_stage_x" description="" />
+		<axis_usage id="chuck_y" stage_id="chuck_stage" axis_id="chuck_stage_y" description="" />
+		<axis_usage id="chuck_z" stage_id="chuck_stage" axis_id="chuck_stage_z" description="" />
+		<axis_usage id="chuck_sz" stage_id="chuck_stage" axis_id="chuck_stage_sz" description="" />
+    </axis_usages>
+
+	<stage_jogs>
+		<stage_jog enabled="true" id="left_stage_jog">
+			<layout>
+				<row_number>3</row_number>
+				<col_number>1</col_number>
+				<row_span description="unit is pixel">10</row_span>
+				<col_span description="unit is pixel">10</col_span>
+			</layout>
+			<arrange>
+				<page id="LINEAR">
+					<item row="0" column="0" stage_id="left_stage" axis_id="left_stage_x"/>
+					<item row="1" column="0" stage_id="left_stage" axis_id="left_stage_y"/>
+					<item row="2" column="0" stage_id="left_stage" axis_id="left_stage_z"/>
+				</page>
+				<page id="ROTATION">
+					<item row="0" column="0" stage_id="left_stage" axis_id="left_stage_sx"/>
+					<item row="1" column="0" stage_id="left_stage" axis_id="left_stage_sy"/>
+					<item row="2" column="0" stage_id="left_stage" axis_id="left_stage_sz"/>
+				</page>
+			</arrange>
+		</stage_jog>
+
+		<stage_jog enabled="true" id="right_stage_jog">
+			<layout>
+				<row_number>3</row_number>
+				<col_number>1</col_number>
+				<row_span>10</row_span>
+				<col_span>10</col_span>
+			</layout>
+			<arrange>
+				<page id="LINEAR">
+					<item row="0" column="0" stage_id="right_stage" axis_id="right_stage_x"/>
+					<item row="1" column="0" stage_id="right_stage" axis_id="right_stage_y"/>
+					<item row="2" column="0" stage_id="right_stage" axis_id="right_stage_z"/>
+				</page>
+				<page id="ROTATION">
+					<item row="0" column="0" stage_id="right_stage" axis_id="right_stage_sx"/>
+					<item row="1" column="0" stage_id="right_stage" axis_id="right_stage_sy"/>
+					<item row="2" column="0" stage_id="right_stage" axis_id="right_stage_sz"/>
+				</page>
+			</arrange>
+		</stage_jog>
+		
+		<stage_jog enabled="true" id="chuck_stage_jog">
+			<layout>
+				<row_number>3</row_number>
+				<col_number>1</col_number>
+				<row_span>10</row_span>
+				<col_span>10</col_span>
+			</layout>
+			<arrange>
+				<page id="LINEAR">
+					<item row="0" column="0" stage_id="chuck_stage" axis_id="chuck_stage_x"/>
+					<item row="1" column="0" stage_id="chuck_stage" axis_id="chuck_stage_y"/>
+					<item row="2" column="0" stage_id="chuck_stage" axis_id="chuck_stage_z"/>
+				</page>
+				<page id="ROTATION">
+					<item row="0" column="0" stage_id="chuck_stage" axis_id="chuck_stage_sz"/>
+				</page>
+			</arrange>
+		</stage_jog>
+		
+		<stage_jog enabled="true" id="other_stage_jog">
+			<layout>
+				<row_number>2</row_number>
+				<col_number>2</col_number>
+				<row_span>10</row_span>
+				<col_span>10</col_span>
+			</layout>
+			<arrange>
+				<page id="LINEAR">
+					<item row="0" column="0" stage_id="other_stage" axis_id="ccd_stage_x"/>
+					<item row="0" column="1" stage_id="other_stage" axis_id="ccd_stage_y"/>
+					<item row="1" column="0" stage_id="other_stage" axis_id="ccd_stage_z"/>
+					<item row="1" column="1" stage_id="other_stage" axis_id="height_stage_u"/>
+				</page>
+			</arrange>
+		</stage_jog>
+	</stage_jogs>
+</config>

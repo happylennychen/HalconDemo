@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ChuckHeightVerifyInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ChuckX_1>NaN</ChuckX_1>
+  <ChuckY_1>NaN</ChuckY_1>
+  <Height_1>NaN</Height_1>
+  <ChuckX_2>NaN</ChuckX_2>
+  <ChuckY_2>NaN</ChuckY_2>
+  <Height_2>NaN</Height_2>
+  <ChuckX_3>NaN</ChuckX_3>
+  <ChuckY_3>NaN</ChuckY_3>
+  <Height_3>NaN</Height_3>
+  <ChuckX_4>NaN</ChuckX_4>
+  <ChuckY_4>NaN</ChuckY_4>
+  <Height_4>NaN</Height_4>
+  <ChuckX_5>NaN</ChuckX_5>
+  <ChuckY_5>NaN</ChuckY_5>
+  <Height_5>NaN</Height_5>
+  <ThresholdBetween>25</ThresholdBetween>
+  <ThresholdInner>10</ThresholdInner>
+  <WaferType />
+</ChuckHeightVerifyInfo>

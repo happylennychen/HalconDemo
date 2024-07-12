@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<CompParamInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coderReverse>1</coderReverse>
+  <sevonLevel>0</sevonLevel>
+  <limitPos>-9999999</limitPos>
+  <homeOffset>-16000</homeOffset>
+  <distancePerPulse>0.1</distancePerPulse>
+  <minVel>50000</minVel>
+  <maxVel>100000</maxVel>
+  <posLimit>3480000</posLimit>
+  <negLimit>0</negLimit>
+  <numPos>350</numPos>
+  <posStart>0</posStart>
+  <posDis>3500000</posDis>
+  <compDataPath>C:\Users\Administrator\Desktop\激光干涉数据\X轴带负载带光栅标定步距1mm正向回零偏移1.6mm.rtl</compDataPath>
+</CompParamInfo>

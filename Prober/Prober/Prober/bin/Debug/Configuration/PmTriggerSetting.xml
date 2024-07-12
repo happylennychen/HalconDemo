@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<PmTriggerSetting xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PmRange1>-10</PmRange1>
+  <PmRange2>-10</PmRange2>
+  <PmNplc1>1</PmNplc1>
+  <PmNplc2>1</PmNplc2>
+  <ScanRange1>20</ScanRange1>
+  <ScanRange2>20</ScanRange2>
+  <ScanStep1>0.2</ScanStep1>
+  <ScanStep2>0.2</ScanStep2>
+</PmTriggerSetting>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<HCalibrationInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ArearCircle>95000</ArearCircle>
+  <RowSpace>5000</RowSpace>
+  <ColSpace>5000</ColSpace>
+  <CenterX>0</CenterX>
+  <CenterY>0</CenterY>
+  <Points />
+  <Lines />
+</HCalibrationInfo>

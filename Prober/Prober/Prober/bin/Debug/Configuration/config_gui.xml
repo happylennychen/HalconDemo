@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>		
+	<stage_jogs_area>		
+		<stage_jog id="left_stage_jog" left="2" top="10" />
+		<stage_jog id="right_stage_jog" left="235" top="10" />
+		<stage_jog id="chuck_stage_jog" left="470" top="10" />
+		<stage_jog id="other_stage_jog" left="705" top="10" />		
+		<!--
+		<stage_jog id="other_stage_jog" left="570" top="10" />
+		-->
+	</stage_jogs_area>
+	
+	
+</config>

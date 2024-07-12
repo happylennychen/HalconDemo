@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ChuckHeightVerifyInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ChuckX_1>170999.9</ChuckX_1>
+  <ChuckY_1>185599.7</ChuckY_1>
+  <Height_1>1145.1</Height_1>
+  <ChuckX_2>192870.7</ChuckX_2>
+  <ChuckY_2>185599.7</ChuckY_2>
+  <Height_2>1146.8</Height_2>
+  <ChuckX_3>214741.5</ChuckX_3>
+  <ChuckY_3>185599.7</ChuckY_3>
+  <Height_3>1147.9</Height_3>
+  <ChuckX_4>214741.5</ChuckX_4>
+  <ChuckY_4>206806.8</ChuckY_4>
+  <Height_4>1146.6</Height_4>
+  <ChuckX_5>214741.5</ChuckX_5>
+  <ChuckY_5>228013.8</ChuckY_5>
+  <Height_5>1148.6</Height_5>
+  <ThresholdBetween>50</ThresholdBetween>
+  <ThresholdInner>50</ThresholdInner>
+  <WaferType>XH_CCD45</WaferType>
+</ChuckHeightVerifyInfo>

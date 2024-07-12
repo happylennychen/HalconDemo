@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<SubdiePosCaliInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ReticleName>D05</ReticleName>
+  <SubDieName>BAR4-01</SubDieName>
+  <ChuckX>0</ChuckX>
+  <ChuckY>0</ChuckY>
+  <LeftX>0</LeftX>
+  <LeftY>0</LeftY>
+  <RightX>0</RightX>
+  <RightY>0</RightY>
+  <Chuck_AxisX>203780.4</Chuck_AxisX>
+  <Chuck_AxisY>154564.9</Chuck_AxisY>
+  <Left_AxisX>24006.05</Left_AxisX>
+  <Left_AxisY>59519.45</Left_AxisY>
+  <Right_AxisX>7.15</Right_AxisX>
+  <Right_AxisY>68383</Right_AxisY>
+</SubdiePosCaliInfo>
