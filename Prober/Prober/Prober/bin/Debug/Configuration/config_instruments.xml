@@ -3,7 +3,7 @@
 	<instruments>		
 		<instrument id="pma1" category="PMA" vendor="KEYSIGHT" model="_816xB" visa_resource="GPIB0::21::INSTR" decription="" />
 		
-		<instrument id="smu1" category="SMU" vendor="KEITHLEY" model="_2602B" visa_resource="TCPIP0::192.168.0.104::5025::SOCKET" decription="" />				
+		<instrument id="smu1" category="SMU" vendor="KEITHLEY" model="_2602B" visa_resource="GPIB0::26::INSTR" decription="" />				
 	    
 		<instrument id="altimeter_ld" category="ALTIMETER" vendor="KEYENCE" model="_CL3000" visa_resource="TCPIP0::192.168.0.10::24685::SOCKET" decription="激光测高仪" />	
 		<instrument id="altimeter_cap" category="ALTIMETER" vendor="KH" model="_AQE" visa_resource="TCPIP0::192.168.1.126::502::SOCKET" decription="电容测高仪" />			
