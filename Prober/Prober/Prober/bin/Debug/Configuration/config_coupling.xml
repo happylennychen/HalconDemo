@@ -11,38 +11,6 @@
 	</coupling_in_list>
 
 	<coupling_feedback_list>
-		<coupling_feedback id="o_feedback" instrument_usage_id="pma1_2_1_opm">
-			<initial_settings>
-				<setting key="WAVELENGTH" value="1310" />
-				<setting key="AVERAGE_TIME" value="0.5" />
-				<setting key="RANGE_MODE" value="MANUAL" />
-				<setting key="RANGE" value="0" />
-				<setting key="UNIT_TYPE" value="DBM" />
-			</initial_settings>
-
-			<trigger_in_settings>
-				<setting key="AVERAGE_TIME_IN_MS" value="0.5" />
-				<setting key="TIME_IN_MS_PER_POINT" value="0.5" />
-				<setting key="RANGE_IN_DBM" value="0" />
-			</trigger_in_settings>
-		</coupling_feedback>
-
-		<coupling_feedback id="o_feedback_2" instrument_usage_id="pma1_2_2_opm">
-			<initial_settings>
-				<setting key="WAVELENGTH" value="1310" />
-				<setting key="AVERAGE_TIME" value="0.5" />
-				<setting key="RANGE_MODE" value="MANUAL" />
-				<setting key="RANGE" value="0" />
-				<setting key="UNIT_TYPE" value="DBM" />
-			</initial_settings>
-
-			<trigger_in_settings>
-				<setting key="AVERAGE_TIME_IN_MS" value="0.5" />
-				<setting key="TIME_IN_MS_PER_POINT" value="0.5" />
-				<setting key="RANGE_IN_DBM" value="0" />
-			</trigger_in_settings>
-		</coupling_feedback>
-
 		<coupling_feedback id="e_feedback" instrument_usage_id="smu1_a">
 			<initial_settings>
 				<setting key="MEASURE_NPLC" value="0.2" />
@@ -54,40 +22,15 @@
 				<setting key="RANGE" value="0.5" />
 			</trigger_in_settings>
 		</coupling_feedback>
-
 	</coupling_feedback_list>
 
 	<coupling_feedback_gui_monitorings refresh_interval="500" description="unit is millisecond">
-		<gui_monitoring coupling_feedback_id="o_feedback" title_resource_id="txtOpticPower" />
-		<gui_monitoring coupling_feedback_id="o_feedback_2" title_resource_id="txtOpticPower_2" />
-				
 		<gui_monitoring coupling_feedback_id="e_feedback" title_resource_id="txtCurrent" />
-
 	</coupling_feedback_gui_monitorings>
 
 	<coupling_2d_parameters>
 		<cross_coupling_2d_parameters>
 			<abort_stepped_coupling_when_continuous_decline enabled="false" point_number="5" />
-
-			<cross_coupling_2d_parameter id="cross_o_feedback">
-				<!-- <weighted_average_mean enabled="false" /> -->
-				<coupling_in enabled="false" coupling_in_id="o_in" />
-				<coupling_feedback coupling_feedback_id="o_feedback" />
-				<traveling>
-					<coarse_traveling motion_range="20" step="0.2" />
-					<refined_traveling enabled="true" motion_range="10" step="0.1" />
-				</traveling>
-			</cross_coupling_2d_parameter>
-			<cross_coupling_2d_parameter id="cross_o_feedback_2">
-				<!-- <weighted_average_mean enabled="false" /> -->
-				<coupling_in enabled="false" coupling_in_id="o_in" />
-				<coupling_feedback coupling_feedback_id="o_feedback_2" />
-				<traveling>
-					<coarse_traveling motion_range="20" step="0.2" />
-					<refined_traveling enabled="true" motion_range="10" step="0.1" />
-				</traveling>
-			</cross_coupling_2d_parameter>
-			
 			<cross_coupling_2d_parameter id="cross_e_feedback">
 				<coupling_in enabled="false" coupling_in_id="" />
 				<coupling_feedback coupling_feedback_id="e_feedback" />
@@ -100,26 +43,6 @@
 		</cross_coupling_2d_parameters>
 
 		<spiral_coupling_2d_parameters>
-			<spiral_coupling_2d_parameter id="spiral_o_feedback">
-				<coupling_in enabled="false" coupling_in_id="o_in" />
-				<coupling_feedback coupling_feedback_id="o_feedback" />
-				<traveling motion_range="3" step="1" />
-				<feedback_threshold value="10000.0" description="unit is dBm"/>
-			</spiral_coupling_2d_parameter>
-			<spiral_coupling_2d_parameter id="spiral_o_feedback_2">
-				<coupling_in enabled="false" coupling_in_id="o_in" />
-				<coupling_feedback coupling_feedback_id="o_feedback_2" />
-				<traveling motion_range="3" step="1" />
-				<feedback_threshold value="10000.0" description="unit is dBm"/>
-			</spiral_coupling_2d_parameter>
-			<!--
-			<spiral_coupling_2d_parameter id="spiral_e_feedback">
-				<coupling_in enabled="true" coupling_in_id="o_in" />
-				<coupling_feedback coupling_feedback_id="e_feedback" />
-				<traveling motion_range="10" step="1" />
-				<feedback_threshold value="1E-6" description="unit is A"/>
-			</spiral_coupling_2d_parameter>
--->
 		</spiral_coupling_2d_parameters>
 	</coupling_2d_parameters>
 
