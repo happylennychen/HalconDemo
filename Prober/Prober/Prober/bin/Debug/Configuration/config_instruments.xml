@@ -2,9 +2,9 @@
 <config version="1.0" is_virtual_running="true">
 	<instruments>		
 		<instrument id="pma1" category="PMA" vendor="KEYSIGHT" model="_816xB" visa_resource="GPIB0::21::INSTR" decription="" />
-		<!--
+		
 		<instrument id="smu1" category="SMU" vendor="KEITHLEY" model="_2602B" visa_resource="TCPIP0::192.168.0.104::5025::SOCKET" decription="" />				
-	    -->
+	    
 		<instrument id="altimeter_ld" category="ALTIMETER" vendor="KEYENCE" model="_CL3000" visa_resource="TCPIP0::192.168.0.10::24685::SOCKET" decription="激光测高仪" />	
 		<instrument id="altimeter_cap" category="ALTIMETER" vendor="KH" model="_AQE" visa_resource="TCPIP0::192.168.1.126::502::SOCKET" decription="电容测高仪" />			
 		<instrument id="tec_chuck" category="TEC" vendor="OMRON" model="_5ECC" visa_resource="COM12" decription="托盘控温仪表" />	
@@ -18,9 +18,9 @@
 	<instrument_usages>	
 		<instrument_usage id="pma1_2_1_opm" instrument_id="pma1" slot="2" channel="1" category="OPM" />
 		<instrument_usage id="pma1_2_2_opm" instrument_id="pma1" slot="2" channel="2" category="OPM" />
-		<!--
+		
 		<instrument_usage id="smu1_a" instrument_id="smu1" slot="" channel="A" category="SMU" />
-		-->
+		
 		<instrument_usage id="top_camera" instrument_id="ccd_top" slot="" channel="" category="CCD" />		
 		<instrument_usage id="side_camera" instrument_id="ccd_side" slot="" channel="" category="CCD" />
 		<instrument_usage id="elens_zoom" instrument_id="elens_top" slot="" channel="" category="ELENS" />
@@ -45,7 +45,7 @@
 			<setting key="UNIT_TYPE" value="DBM" description="DBM or W" />
 		</instrument_initial_setting>
 		
-		<!--		
+				
 		<instrument_initial_setting instrument_usage_id="smu1_a">
 			<setting key="SOURCE_TYPE" value="VOLTAGE" />
 			<setting key="MEASURE_TYPE" value="CURRENT" />
@@ -53,6 +53,6 @@
 			<setting key="MEASURE_IS_AUTORANGE" value="true" />			
 			<setting key="IS_TURNED_ON" value="false" />			
 		</instrument_initial_setting>	
-		-->
+		
 	</instrument_initial_settings>
 </config>
