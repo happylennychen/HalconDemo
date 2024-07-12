@@ -297,11 +297,12 @@ namespace Prober {
                     }
                     Thread.Sleep(TimeSpan.FromSeconds(0.5));
                     form.EndRow(index, true);
-
-                    if (!UpdateTecStatus(out message)) {
+                    /*
+                    if (!UpdateTecStatus(out message))
+                    {
                         return (false, message);
                     }
-
+                    */
                     index = 2;
                     form.BeginRow(index);
                     result = motionStageInitializer.Run();
@@ -330,7 +331,7 @@ namespace Prober {
                     }
                     Thread.Sleep(TimeSpan.FromSeconds(0.5));
                     form.EndRow(index, true);
-
+                    
                     index = 3;
                     form.BeginRow(index);
                     result = stageJogInitializer.Initialize();
@@ -346,7 +347,7 @@ namespace Prober {
                     }
                     Thread.Sleep(TimeSpan.FromSeconds(0.5));
                     form.EndRow(index, true);
-
+                    
                     index = 4;
                     form.BeginRow(index);
                     InitializingConfigCoupling initConfigCoupling = new InitializingConfigCoupling(sharedObjects);
@@ -363,7 +364,7 @@ namespace Prober {
                     }
                     Thread.Sleep(TimeSpan.FromSeconds(0.5));
                     form.EndRow(index, true);
-
+                    /*
                     index = 5;
                     form.BeginRow(index);
                     InitializingRequest initConfigRequest = new InitializingRequest(sharedObjects);
@@ -400,7 +401,7 @@ namespace Prober {
                     }
                     Thread.Sleep(TimeSpan.FromSeconds(0.5));
                     form.EndRow(index, true);
-
+                    */
                     index = 7;
                     form.BeginRow(index);
                     result = InitializeGui();
@@ -417,7 +418,7 @@ namespace Prober {
                     }
                     Thread.Sleep(TimeSpan.FromSeconds(0.5));
                     form.EndRow(index, true);
-
+                    
                     //[gyh]: 待重构，放到更合适位置！
                     if (!TryCreateCouplingRawDataDirectory()) {
                         message = frc.GetString("txtFailedToCreateCouplingRawDataDir");
@@ -425,7 +426,7 @@ namespace Prober {
                         LOGGER.Error(message);
                         return (false, message);
                     }                    
-
+                    
                     return (true, string.Empty);
                 });
             } finally {
@@ -459,13 +460,13 @@ namespace Prober {
                 miCalibration.Enabled = true;
                 miDebug.Enabled = true;
 
-                if (waferHandle.NeedHoming())
-                {
-                    SetUiState(false);
-                    MessageBox.Show("机台重启后需要回零");
-                }
+                //if (waferHandle.NeedHoming())
+                //{
+                //    SetUiState(false);
+                //    MessageBox.Show("机台重启后需要回零");
+                //}
 
-                ShowCamera(sharedObjects);                
+                //ShowCamera(sharedObjects);                
 
                 TryBeginListening();                
             } else {
@@ -739,12 +740,12 @@ namespace Prober {
                 return false;
             }
 
-            InitializeGuiRedGreenLightBoard();
-            InitializeWaferMapArea();
+            //InitializeGuiRedGreenLightBoard();
+            //InitializeWaferMapArea();
             InitializeCouplingMonitoringArea();
             InitializeCouplingArea();
-            InitializeHeightMonitoringArea();
-            InitOtheDisplayMonitorArea();
+            //InitializeHeightMonitoringArea();
+            //InitOtheDisplayMonitorArea();
 
             return true;
         }
