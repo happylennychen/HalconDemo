@@ -25,7 +25,13 @@ namespace MyInstruments.MySmu {
                 return;
             }
 
-            keithley2602b.Initialize(visaResource, true, false, "QueryInstrStatus=True");
+            //keithley2602b.Initialize(visaResource, true, false, "QueryInstrStatus=True");
+            keithley2602b.Initialize(visaResource, false, false, "QueryInstrStatus=False"); //陈军修改，不回读
+
+            //用下面的代码进行了一下测试，证明修改没问题
+            //TurnOn("1", "A");
+            //SetMeasurementType("1", "A", EnumSmuMeasurementType.CURRENT);
+            //double ret = Measure("1", "A");
         }
 
         public override void Disconnect() {
