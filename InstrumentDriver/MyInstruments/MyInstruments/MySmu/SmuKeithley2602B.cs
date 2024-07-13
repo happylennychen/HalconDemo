@@ -32,6 +32,14 @@ namespace MyInstruments.MySmu {
             //TurnOn("1", "A");
             //SetMeasurementType("1", "A", EnumSmuMeasurementType.CURRENT);
             //double ret = Measure("1", "A");
+
+            //Leon用下面的代码验证了读值正确
+            //keithley2602b.Source.OutputEnabled["A"] = false;
+            //keithley2602b.Source.Function["A"] = Ke26XXASourceFunctionEnum.Ke26XXASourceFunctionDCVolts;
+            //keithley2602b.Source.Voltage.Limit["A"] = 2;
+            //keithley2602b.Source.Voltage.Level["A"] = 1;
+            //keithley2602b.Source.OutputEnabled["A"] = true;
+            //var ret = keithley2602b.Measurement.Current.Measure("A");
         }
 
         public override void Disconnect() {

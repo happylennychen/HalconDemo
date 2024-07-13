@@ -15,6 +15,7 @@
 			<initial_settings>
 				<setting key="MEASURE_NPLC" value="0.2" />
 				<setting key="MEASURE_IS_AUTORANGE" value="true" />
+				<setting key="IS_TURNED_ON" value="true" />
 			</initial_settings>
 			<trigger_in_settings>
 				<setting key="NPLC" value="1.0" />
