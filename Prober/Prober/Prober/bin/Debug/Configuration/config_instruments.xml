@@ -11,10 +11,6 @@
 	
 	<instrument_initial_settings>		
 		<instrument_initial_setting instrument_usage_id="smu1_a">
-			<setting key="SOURCE_TYPE" value="VOLTAGE" />
-			<setting key="MEASURE_TYPE" value="CURRENT" />
-			<setting key="SOURCE_LEVEL" value="1.0" />
-			<setting key="MEASURE_IS_AUTORANGE" value="true" />			
 			<setting key="IS_TURNED_ON" value="false" />			
 		</instrument_initial_setting>	
 	</instrument_initial_settings>

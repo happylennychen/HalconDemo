@@ -160,6 +160,8 @@
     <Compile Include="MyPma\VirtualPma.cs" />
     <Compile Include="MySmu\EnumSmuMeasurementType.cs" />
     <Compile Include="MySmu\EnumKeithleySmuSetting.cs" />
+    <Compile Include="MySmu\EnumSmuSourceOffMode.cs" />
+    <Compile Include="MySmu\EnumSmuSenseMode.cs" />
     <Compile Include="MySmu\EnumSmuSourceType.cs" />
     <Compile Include="MySmu\ISmu.cs" />
     <Compile Include="MySmu\SmuKeithley2602B.cs" />

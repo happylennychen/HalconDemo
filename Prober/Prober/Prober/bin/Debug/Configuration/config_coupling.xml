@@ -13,8 +13,20 @@
 	<coupling_feedback_list>
 		<coupling_feedback id="e_feedback" instrument_usage_id="smu1_a">
 			<initial_settings>
-				<setting key="MEASURE_NPLC" value="0.2" />
-				<setting key="MEASURE_IS_AUTORANGE" value="true" />
+				<setting key="RESET" value="true"/>
+				<setting key="MEASURE_NPLC" value="0.05" />
+				<setting key="MEASURE_DELAY" value="0.0001"/>
+				<setting key="SOURCE_HIGHC" value="false"/>
+				<setting key="SOURCE_TYPE" value="VOLTAGE" />
+				<setting key="MEASURE_TYPE" value="CURRENT" />
+				<setting key="SENSE_MODE" value="LOCAL" />
+				<setting key="SOURCE_OFF_MODE" value="NORMAL" />
+				<setting key="SOURCE_OFF_TYPE" value="VOLTAGE" />
+				<setting key="SOURCE_OFF_LIMIT" value="0.000001" />
+				<setting key="SOURCE_RANGE" value="6"/>
+				<setting key="SOURCE_LEVEL" value="-2"/>
+				<setting key="SOURCE_LIMIT" value="0.01"/>
+				<setting key="MEASURE_RANGE" value="0.01"/>
 				<setting key="IS_TURNED_ON" value="true" />
 			</initial_settings>
 			<trigger_in_settings>
