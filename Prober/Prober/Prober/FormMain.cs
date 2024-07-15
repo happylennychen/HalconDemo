@@ -298,9 +298,9 @@ namespace Prober {
                     Thread.Sleep(TimeSpan.FromSeconds(0.5));
                     form.EndRow(index, true);
 
-                    if (!UpdateTecStatus(out message)) {
-                        return (false, message);
-                    }
+                    //if (!UpdateTecStatus(out message)) {
+                    //    return (false, message);
+                    //}
 
                     index = 2;
                     form.BeginRow(index);
@@ -347,7 +347,7 @@ namespace Prober {
                     Thread.Sleep(TimeSpan.FromSeconds(0.5));
                     form.EndRow(index, true);
 
-                    index = 4;
+                    /*index = 4;
                     form.BeginRow(index);
                     InitializingConfigCoupling initConfigCoupling = new InitializingConfigCoupling(sharedObjects);
                     result = initConfigCoupling.Run();
@@ -399,7 +399,7 @@ namespace Prober {
                         return (false, message);
                     }
                     Thread.Sleep(TimeSpan.FromSeconds(0.5));
-                    form.EndRow(index, true);
+                    form.EndRow(index, true);*/
 
                     index = 7;
                     form.BeginRow(index);
@@ -459,13 +459,13 @@ namespace Prober {
                 miCalibration.Enabled = true;
                 miDebug.Enabled = true;
 
-                if (waferHandle.NeedHoming())
-                {
-                    SetUiState(false);
-                    MessageBox.Show("机台重启后需要回零");
-                }
+                //if (waferHandle.NeedHoming())
+                //{
+                //    SetUiState(false);
+                //    MessageBox.Show("机台重启后需要回零");
+                //}
 
-                ShowCamera(sharedObjects);                
+                //ShowCamera(sharedObjects);                
 
                 TryBeginListening();                
             } else {
@@ -739,11 +739,11 @@ namespace Prober {
                 return false;
             }
 
-            InitializeGuiRedGreenLightBoard();
+            //InitializeGuiRedGreenLightBoard();
             InitializeWaferMapArea();
-            InitializeCouplingMonitoringArea();
-            InitializeCouplingArea();
-            InitializeHeightMonitoringArea();
+            //InitializeCouplingMonitoringArea();
+            //InitializeCouplingArea();
+            //InitializeHeightMonitoringArea();
             InitOtheDisplayMonitorArea();
 
             return true;

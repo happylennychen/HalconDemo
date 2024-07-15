@@ -51,9 +51,9 @@ namespace Prober.Forms
             sharedObject = sharedObjects;
 
             //创建定时任务，刷新当前温度状态，周期0.5秒
-            timerUpdateRedGreenLights.Interval = 500;
-            timerUpdateRedGreenLights.Elapsed += OnTimerRefreshTemperatureInfo;
-            timerUpdateRedGreenLights.Enabled = true;
+            //timerUpdateRedGreenLights.Interval = 500;
+            //timerUpdateRedGreenLights.Elapsed += OnTimerRefreshTemperatureInfo;
+            //timerUpdateRedGreenLights.Enabled = true;
 
             sharedObjects.TryGetValue(SharedObjectKey.STAGE_AXIS_USAGE_DICT, out object tempObj);
             stageAxisUsages = tempObj as Dictionary<string, StageAxis>;
@@ -67,8 +67,8 @@ namespace Prober.Forms
             //获取轴
             GetStageAxisDic();
             //获取Chuck
-            var getResult2 = GetInstrument("chuck_temperature");
-            getResult2 = GetInstrument("led_chuck");
+            //var getResult2 = GetInstrument("chuck_temperature");
+            //getResult2 = GetInstrument("led_chuck");
 
             GetCoeff();
         }

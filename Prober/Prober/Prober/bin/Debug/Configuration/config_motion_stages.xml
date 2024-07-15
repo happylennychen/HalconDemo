@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<config  version="1.0" is_virtual_running="false">
+<config  version="1.0" is_virtual_running="true">
 	<motion_controllers>		
 		<motion_controller type_id="1" vendor="LEISAI" model="DMC3000">
 			<motion_controller_board address="0">

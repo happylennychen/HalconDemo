@@ -40,10 +40,10 @@ namespace Prober {
             this.instrumentUsageList = tempObj as List<InstrumentUsage>;
 
             //获取仪表
-            var getResult2 = GetInstrument("top_camera");   
-            var getResult4 = GetInstrument("front_camera");            
-            var getResult6 = GetInstrument("elens_zoom");
-            var getResult8 = GetInstrument("rear_camera");
+            //var getResult2 = GetInstrument("top_camera");   
+            //var getResult4 = GetInstrument("front_camera");            
+            //var getResult6 = GetInstrument("elens_zoom");
+            //var getResult8 = GetInstrument("rear_camera");
         }
 
         public (bool isOk, string errorText, Instrument instrument) GetInstrument(string instrumentUsageId)
@@ -121,22 +121,22 @@ namespace Prober {
             try
             {
                 InitZoomList();
-                hw_Top.ReportMessage = this.ReportMessage;
-                hw_Top.InitCamera(cameraTop,"Top",false);
-                hw_Top.MaxMinClick = TopCameraMaxMinClick;
-                hw_Top.ZoomSelect = TopCameraZoom;
-                hw_Top.SetZoomList(zoomList);
-                hw_Top.SetPixLenCoef(1.2); //待确认
+                //hw_Top.ReportMessage = this.ReportMessage;
+                //hw_Top.InitCamera(cameraTop,"Top",false);
+                //hw_Top.MaxMinClick = TopCameraMaxMinClick;
+                //hw_Top.ZoomSelect = TopCameraZoom;
+                //hw_Top.SetZoomList(zoomList);
+                //hw_Top.SetPixLenCoef(1.2); //待确认
 
-                hw_Front.ReportMessage = this.ReportMessage;
-                hw_Front.InitCamera(cameraFront, "Front",false);
-                hw_Front.MaxMinClick = SideCameraMaxMinClick;
-                hw_Front.SetPixLenCoef(1.2); //待确认
-                                             //
-                hw_Rear.ReportMessage = this.ReportMessage;
-                hw_Rear.InitCamera(cameraRear, "Rear",false);
-                hw_Rear.MaxMinClick = SideCameraMaxMinClick;
-                hw_Rear.SetPixLenCoef(1.2); //待确认   
+                //hw_Front.ReportMessage = this.ReportMessage;
+                //hw_Front.InitCamera(cameraFront, "Front",false);
+                //hw_Front.MaxMinClick = SideCameraMaxMinClick;
+                //hw_Front.SetPixLenCoef(1.2); //待确认
+                //                             //
+                //hw_Rear.ReportMessage = this.ReportMessage;
+                //hw_Rear.InitCamera(cameraRear, "Rear",false);
+                //hw_Rear.MaxMinClick = SideCameraMaxMinClick;
+                //hw_Rear.SetPixLenCoef(1.2); //待确认   
             }
             catch (Exception ex)
             {

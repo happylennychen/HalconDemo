@@ -158,7 +158,7 @@ namespace Prober.WaferDef {
         }
 
         public (bool isOk, string errorText, Instrument instrument) GetInstrument(string instrumentUsageId) {
-            string errorText = string.Empty;
+            /*string errorText = string.Empty;
             var list = this.instrumentUsageList.Where(x => x.UsageId.Equals(instrumentUsageId)).ToList();
             InstrumentUsage instrumentUsage = list.First();
             if (list == null) {
@@ -218,9 +218,9 @@ namespace Prober.WaferDef {
                     LOGGER.Error(errorText);
                     ReportMessage(errorText);
                     return (false, errorText, null);
-            }
+            }*/
 
-            return (true, string.Empty, instrument);
+            return (true, string.Empty, null);
         }
 
         internal (bool isOK, string errorMessage, StageAxis stageAxis) GetStageAxis(string axisUsageId) {

@@ -72,8 +72,8 @@ namespace Prober.Forms
             //获取轴
             GetStageAxisDic();
 
-            var getResult2 = GetInstrument("cap_altimeter");
-            getResult2 = GetInstrument("top_camera");
+            //var getResult2 = GetInstrument("cap_altimeter");
+            //getResult2 = GetInstrument("top_camera");
 
             sharedObjects.TryGetValue(PrivateSharedObjectKey.WAFER_HANDLE, out tempObj);
             waferHandle = tempObj as WaferManual;

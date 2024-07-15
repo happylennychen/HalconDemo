@@ -1,58 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <config version="1.0" is_virtual_running="true">
 	<instruments>		
-		<instrument id="pma1" category="PMA" vendor="KEYSIGHT" model="_816xB" visa_resource="GPIB0::21::INSTR" decription="" />
-		
-		<instrument id="smu1" category="SMU" vendor="KEITHLEY" model="_2602B" visa_resource="TCPIP0::192.168.0.104::5025::SOCKET" decription="" />				
-	    
-		<instrument id="altimeter_ld" category="ALTIMETER" vendor="KEYENCE" model="_CL3000" visa_resource="TCPIP0::192.168.0.10::24685::SOCKET" decription="激光测高仪" />	
-		<instrument id="altimeter_cap" category="ALTIMETER" vendor="KH" model="_AQE" visa_resource="TCPIP0::192.168.1.126::502::SOCKET" decription="电容测高仪" />			
-		<instrument id="tec_chuck" category="TEC" vendor="OMRON" model="_5ECC" visa_resource="COM12" decription="托盘控温仪表" />	
-		<instrument id="tec_grat" category="TEC" vendor="THKA" model="_THKA" visa_resource="COM9" decription="光栅尺温度监控仪表" />	
-		<instrument id="ccd_top" category="CCD" vendor="DAHENG" model="_DH" visa_resource="2BA200004189_DahengImaging_ME2P184021U3C" decription="顶视相机" />						
-		<instrument id="ccd_side" category="CCD" vendor="DAHENG" model="_DH" visa_resource="2BA200004078_DahengImaging_MER250279U3CL" decription="侧视相机" />	
-		<instrument id="elens_top" category="ELENS" vendor="POMEAS" model="_POMEAS" visa_resource="COM11" decription="变倍镜头" />	
-		<instrument id="led_chuck" category="LED" vendor="ZS" model="_ZS" visa_resource="COM10" decription="LED数码管" />	
+
 	</instruments>
 
 	<instrument_usages>	
-		<instrument_usage id="pma1_2_1_opm" instrument_id="pma1" slot="2" channel="1" category="OPM" />
-		<instrument_usage id="pma1_2_2_opm" instrument_id="pma1" slot="2" channel="2" category="OPM" />
-		
-		<instrument_usage id="smu1_a" instrument_id="smu1" slot="" channel="A" category="SMU" />
-		
-		<instrument_usage id="top_camera" instrument_id="ccd_top" slot="" channel="" category="CCD" />		
-		<instrument_usage id="side_camera" instrument_id="ccd_side" slot="" channel="" category="CCD" />
-		<instrument_usage id="elens_zoom" instrument_id="elens_top" slot="" channel="" category="ELENS" />
-		<instrument_usage id="ld_altimeter" instrument_id="altimeter_ld" slot="" channel="" category="ALTIMETER" />
-		<instrument_usage id="cap_altimeter" instrument_id="altimeter_cap" slot="" channel="" category="ALTIMETER" />
-		<instrument_usage id ="chuck_temperature" instrument_id="tec_chuck" slot="" channel="" category="TEC" />
-		<instrument_usage id ="grating_temperature" instrument_id="tec_grat" slot="" channel="" category="TEC" />	
-		<instrument_usage id ="led_chuck" instrument_id="led_chuck" slot="" channel="" category="LED" />	
+
 	</instrument_usages>
 	
 	<instrument_initial_settings>
-		<instrument_initial_setting instrument_usage_id="pma1_2_1_opm">
-			<setting key="WAVELENGTH" value="1310" description="unit is nm" />
-			<setting key="AVERAGE_TIME" value="0.5" description="unit is ms" />
-			<setting key="RANGE_MODE" value="MANUAL" description="AUTO or MANUAL" />
-			<setting key="UNIT_TYPE" value="DBM" description="DBM or W" />			
-		</instrument_initial_setting>
-		<instrument_initial_setting instrument_usage_id="pma1_2_2_opm">
-			<setting key="WAVELENGTH" value="1310" description="unit is nm" />
-			<setting key="AVERAGE_TIME" value="0.5" description="unit is ms" />
-			<setting key="RANGE_MODE" value="MANUAL" description="AUTO or MANUAL" />
-			<setting key="UNIT_TYPE" value="DBM" description="DBM or W" />
-		</instrument_initial_setting>
-		
-				
-		<instrument_initial_setting instrument_usage_id="smu1_a">
-			<setting key="SOURCE_TYPE" value="VOLTAGE" />
-			<setting key="MEASURE_TYPE" value="CURRENT" />
-			<setting key="SOURCE_LEVEL" value="1.0" />
-			<setting key="MEASURE_IS_AUTORANGE" value="true" />			
-			<setting key="IS_TURNED_ON" value="false" />			
-		</instrument_initial_setting>	
 		
 	</instrument_initial_settings>
 </config>
