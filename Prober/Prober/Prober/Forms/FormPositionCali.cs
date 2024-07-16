@@ -46,12 +46,14 @@ namespace Prober.Forms
         public Func<DieInfo> GetSelectedDie;
         private ConcurrentDictionary<string, object> sharedObjects;
         public PlatCalibrate WaferMotionPlat { get; set; } = new PlatCalibrate("WaferMotion");
+        public bool IsDataReady { get; private set; }
+
         StandaloneAm altimeterCap;
         private StandaloneCamera camera;
         string basicDieName = string.Empty; 
 
         public Dictionary<string, CompensateData> padCompensate = null;
-        private BindingList<PositionModel> positionList;
+        private BindingList<SubdieOrdinary> positionList;
 
         public FormPositionCali(ConcurrentDictionary<string, object> sharedObjects)
         {
@@ -79,8 +81,14 @@ namespace Prober.Forms
             sharedObjects.TryGetValue(PrivateSharedObjectKey.WAFER_HANDLE, out tempObj);
             waferHandle = tempObj as WaferManual;
 
-            positionList = new BindingList<PositionModel>();
+            positionList = new BindingList<SubdieOrdinary>();
             dgv_Items.DataSource = positionList;
+            positionList.ListChanged += PositionList_ListChanged;
+        }
+
+        private void PositionList_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            SetDataReady(false);
         }
 
         public void EnableGUI(bool enable) {
@@ -294,13 +302,21 @@ namespace Prober.Forms
                     string calInfo = $"计算完成，测试Die个数{SubDieTestState.Count},计算出有效位置个数{TestDiesCalPos.Count}";
                     MessageBox.Show(this, calInfo, "Info:");
                     sharedObjects.AddOrUpdate(PrivateSharedObjectKey.SUBDIE_POS, TestDiesCalPos, (key, oldValue) => TestDiesCalPos);
+                    SetDataReady(true); 
                 }
             }
             catch(Exception ex)
             {
                 MessageBox.Show($"坐标计算异常:{ex.Message}");
             }            
-        }          
+        }
+
+        private void SetDataReady(bool isDataReady)
+        {
+            IsDataReady = isDataReady;
+            moveToButton.Enabled = isDataReady;
+            dataReadyLabel.Text = isDataReady?"已生效":"未生效";
+        }
 
         private bool HeightCheck(List<ItemCalPosInfo> TestDiesCalPos, double chuckHeightLimit, out string subError) {
             subError = string.Empty;
@@ -731,10 +747,15 @@ namespace Prober.Forms
             }
             else
             {
-                dgv_Items.DataSource = items;
+                //dgv_Items.DataSource = items;
+                foreach(var item in items)
+                {
+                    positionList.Add(item);
+                }
                 if (ConfigMgr.SaveSubdieOrdinaryToXML(items))
                 {
                     MessageBox.Show(this, "导入成功！", "提示：");
+                    SetDataReady(false);
                 }
                 else
                 {
@@ -1234,7 +1255,8 @@ namespace Prober.Forms
             return Math.Abs(sx1 - info.BaseItem_LeftSX) > step || Math.Abs(sy1 - info.BaseItem_LeftSY) > step || Math.Abs(sz1 - info.BaseItem_LeftSZ) > step
                 || Math.Abs(sx3 - info.BaseItem_RightSX) > step || Math.Abs(sy3 - info.BaseItem_RightSY) > step || Math.Abs(sz3 - info.BaseItem_RightSZ) > step;
         }
-        private void MoveTo()
+
+        private void moveToButton_Click(object sender, EventArgs e)
         {
             if (!CheckBeforeItemMove())
             {
@@ -1614,15 +1636,5 @@ namespace Prober.Forms
             sharedObjects.AddOrUpdate(PrivateSharedObjectKey.WAFER_MAP, map, (key, oldValue) => map);
         }
 
-        private class PositionModel
-        {
-            public string SubDieName { get; set; }
-            public double ChuckX { get; set; }
-            public double ChuckY { get; set; }
-            public double LeftX { get; set; }
-            public double LeftY { get; set; }
-            public double RightX { get; set; }
-            public double RightY { get; set; }
-        }
     }
 }
