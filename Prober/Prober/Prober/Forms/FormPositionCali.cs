@@ -51,6 +51,7 @@ namespace Prober.Forms
         string basicDieName = string.Empty; 
 
         public Dictionary<string, CompensateData> padCompensate = null;
+        private BindingList<PositionModel> positionList;
 
         public FormPositionCali(ConcurrentDictionary<string, object> sharedObjects)
         {
@@ -77,6 +78,9 @@ namespace Prober.Forms
 
             sharedObjects.TryGetValue(PrivateSharedObjectKey.WAFER_HANDLE, out tempObj);
             waferHandle = tempObj as WaferManual;
+
+            positionList = new BindingList<PositionModel>();
+            dgv_Items.DataSource = positionList;
         }
 
         public void EnableGUI(bool enable) {
@@ -1230,8 +1234,7 @@ namespace Prober.Forms
             return Math.Abs(sx1 - info.BaseItem_LeftSX) > step || Math.Abs(sy1 - info.BaseItem_LeftSY) > step || Math.Abs(sz1 - info.BaseItem_LeftSZ) > step
                 || Math.Abs(sx3 - info.BaseItem_RightSX) > step || Math.Abs(sy3 - info.BaseItem_RightSY) > step || Math.Abs(sz3 - info.BaseItem_RightSZ) > step;
         }
-
-        private void dgv_Items_DoubleClick(object sender, EventArgs e)
+        private void MoveTo()
         {
             if (!CheckBeforeItemMove())
             {
@@ -1265,7 +1268,7 @@ namespace Prober.Forms
                 try
                 {
                     MotionState = State.Busy;
-                    if(!waferHandle.MoveToCaliSubDie(itemCalPos, isStageMove, out string errInfo))
+                    if (!waferHandle.MoveToCaliSubDie(itemCalPos, isStageMove, out string errInfo))
                     {
                         Invoke(new Action(() => { MessageBox.Show(this, $"运动失败:{errInfo}", "Warning:"); }));
                     }
@@ -1609,6 +1612,17 @@ namespace Prober.Forms
             map.isOcrFirstReticleOnly = chb_isOcrFirstReticleOnly.Checked;
             ConfigMgr.SaveWaferMapInfobyType(map);
             sharedObjects.AddOrUpdate(PrivateSharedObjectKey.WAFER_MAP, map, (key, oldValue) => map);
+        }
+
+        private class PositionModel
+        {
+            public string SubDieName { get; set; }
+            public double ChuckX { get; set; }
+            public double ChuckY { get; set; }
+            public double LeftX { get; set; }
+            public double LeftY { get; set; }
+            public double RightX { get; set; }
+            public double RightY { get; set; }
         }
     }
 }
