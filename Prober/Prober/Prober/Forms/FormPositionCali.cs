@@ -48,15 +48,18 @@ namespace Prober.Forms
         public PlatCalibrate WaferMotionPlat { get; set; } = new PlatCalibrate("WaferMotion");
         StandaloneAm altimeterCap;
         private StandaloneCamera camera;
-        string basicDieName = string.Empty; 
+        string basicDieName = string.Empty;
 
         public Dictionary<string, CompensateData> padCompensate = null;
+        public bool IsDataReady { get; private set; }
+        private BindingList<SubdieOrdinary> positionList;
+        private object cellValue = null;
 
         public FormPositionCali(ConcurrentDictionary<string, object> sharedObjects)
         {
             InitializeComponent();
 
-            this.sharedObjects  = sharedObjects;
+            this.sharedObjects = sharedObjects;
             sharedObjects.TryGetValue(SharedObjectKey.STAGE_AXIS_USAGE_DICT, out object tempObj);
             stageAxisUsages = tempObj as Dictionary<string, StageAxis>;
 
@@ -77,15 +80,79 @@ namespace Prober.Forms
 
             sharedObjects.TryGetValue(PrivateSharedObjectKey.WAFER_HANDLE, out tempObj);
             waferHandle = tempObj as WaferManual;
+
+            positionList = new BindingList<SubdieOrdinary>();
+            dgv_Items.AutoGenerateColumns = false;
+            dgv_Items.Columns.AddRange(
+                    new DataGridViewTextBoxColumn()
+                    {
+                        DataPropertyName = "Subname",
+                        HeaderText = "SubDie",
+                        Width = 70
+                    },
+                    new DataGridViewTextBoxColumn()
+                    {
+                        DataPropertyName = "ChuckX",
+                        HeaderText = "Chuck X",
+                        Width = 70
+                    },
+                    new DataGridViewTextBoxColumn()
+                    {
+                        DataPropertyName = "ChuckY",
+                        HeaderText = "Chuck Y",
+                        Width = 70
+                    },
+                    new DataGridViewTextBoxColumn()
+                    {
+                        DataPropertyName = "LeftX",
+                        HeaderText = "Left X",
+                        Width = 70
+                    },
+                    new DataGridViewTextBoxColumn()
+                    {
+                        DataPropertyName = "LeftY",
+                        HeaderText = "Left Y",
+                        Width = 70
+                    },
+                    new DataGridViewTextBoxColumn()
+                    {
+                        DataPropertyName = "RightX",
+                        HeaderText = "Right X",
+                        Width = 70
+                    },
+                    new DataGridViewTextBoxColumn()
+                    {
+                        DataPropertyName = "RightY",
+                        HeaderText = "Right Y",
+                        Width = 70
+                    }
+                );
+            dgv_Items.DataSource = positionList;
+            dgv_Items.CellBeginEdit += Dgv_Items_CellBeginEdit;
+            dgv_Items.CellEndEdit += Dgv_Items_CellEndEdit;
         }
 
-        public void EnableGUI(bool enable) {
+        private void Dgv_Items_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            cellValue = dgv_Items.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+        }
+
+        private void Dgv_Items_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var newValue = dgv_Items.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            if (!Equals(newValue, cellValue))
+                SetDataReady(false);
+        }
+
+
+        public void EnableGUI(bool enable)
+        {
             panel_SubDieInfo.Enabled = enable;
             panel_AssistMark.Enabled = enable;
             panel_SubDieOrdinary.Enabled = enable;
             panel_LeftFA_HeightCali.Enabled = enable;
             panel_RightFA_HeightCali.Enabled = enable;
-            panel_ProbeCard_Cali.Enabled = enable;                   
+            panel_ProbeCard_Cali.Enabled = enable;
         }
 
         public (bool isOk, string errorText, Instrument instrument) GetInstrument(string instrumentUsageId)
@@ -245,14 +312,15 @@ namespace Prober.Forms
                 }
 
                 //一个Reticle内所有subdie的晶圆坐标
-                var items = dgv_Items.DataSource as List<SubdieOrdinary>;
+                //var items = dgv_Items.DataSource as List<SubdieOrdinary>;
+                var items = positionList.ToList();
                 if (items == null || items.Count < 1)
                 {
                     MessageBox.Show(this, "没有测试项信息", "Info:");
                     return;
                 }
 
-                if (!subdieOrdinaryCheck(items))
+                if (!subdieOrdinaryCheck(positionList.ToList()))
                 {
                     return;
                 }
@@ -261,10 +329,11 @@ namespace Prober.Forms
                 //List<bool[]> SubDieTestState = ConfigMgr.LoadWaferTestState(txt_testDieFilePath.Text);
                 List<bool[]> SubDieTestState = new List<bool[]>();
 
-                for(int dieCount = 0; dieCount < map.DieCount;dieCount++)
+                for (int dieCount = 0; dieCount < map.DieCount; dieCount++)
                 {
                     bool[] state = new bool[items.Count];
-                    for(int j = 0; j < items.Count; j++) {
+                    for (int j = 0; j < items.Count; j++)
+                    {
                         state[j] = true;
                     }
                     SubDieTestState.Add(state);
@@ -275,7 +344,7 @@ namespace Prober.Forms
                 {
                     MessageBox.Show(this, "读取系统校准文件失败", "Info:");
                     return;
-                }               
+                }
 
                 string errMsg = string.Empty;
                 TestDiesCalPos = CalTestItemsPositionOnStageUseRandomReticle(map, SubDieTestState, items, itemCalibrate, equipmentInfo, out errMsg, useFixPoint);
@@ -290,18 +359,27 @@ namespace Prober.Forms
                     string calInfo = $"计算完成，测试Die个数{SubDieTestState.Count},计算出有效位置个数{TestDiesCalPos.Count}";
                     MessageBox.Show(this, calInfo, "Info:");
                     sharedObjects.AddOrUpdate(PrivateSharedObjectKey.SUBDIE_POS, TestDiesCalPos, (key, oldValue) => TestDiesCalPos);
+                    SetDataReady(true);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"坐标计算异常:{ex.Message}");
-            }            
-        }          
+            }
+        }
+        private void SetDataReady(bool isDataReady)
+        {
+            IsDataReady = isDataReady;
+            moveToButton.Enabled = isDataReady;
+            dataReadyLabel.Text = isDataReady ? "已生效" : "未生效";
+        }
 
-        private bool HeightCheck(List<ItemCalPosInfo> TestDiesCalPos, double chuckHeightLimit, out string subError) {
+        private bool HeightCheck(List<ItemCalPosInfo> TestDiesCalPos, double chuckHeightLimit, out string subError)
+        {
             subError = string.Empty;
             List<double> heightList = new List<double>();
-            foreach (var item in TestDiesCalPos) {
+            foreach (var item in TestDiesCalPos)
+            {
                 heightList.Add(item.ChuckZ);
             }
 
@@ -309,15 +387,16 @@ namespace Prober.Forms
             int maxIndex = heightList.IndexOf(Max);
             double Min = heightList.Min();
             int minIndex = heightList.IndexOf(Min);
-            if (Math.Abs(Max - Min) > chuckHeightLimit) {
-                subError = string.Format("晶圆高度差异超过{0}，最大值{1},最小值{2},index {3},{4}", chuckHeightLimit, Max, Min, maxIndex + 1, minIndex+ 1);
+            if (Math.Abs(Max - Min) > chuckHeightLimit)
+            {
+                subError = string.Format("晶圆高度差异超过{0}，最大值{1},最小值{2},index {3},{4}", chuckHeightLimit, Max, Min, maxIndex + 1, minIndex + 1);
                 return false;
             }
 
             return true;
-        }        
+        }
 
-        public List<ItemCalPosInfo> CalTestItemsPositionOnStageUseRandomReticle(WaferMapInfo MapInfo, List<bool[]> DieTestStatus, List<SubdieOrdinary> TestItems, SubdiePosCaliInfo itemCalibrate, EquipmentCalibrationInfo equipmentInfo, out string subError,bool useFixPoint = false)
+        public List<ItemCalPosInfo> CalTestItemsPositionOnStageUseRandomReticle(WaferMapInfo MapInfo, List<bool[]> DieTestStatus, List<SubdieOrdinary> TestItems, SubdiePosCaliInfo itemCalibrate, EquipmentCalibrationInfo equipmentInfo, out string subError, bool useFixPoint = false)
         {
             subError = string.Empty;
 
@@ -335,19 +414,23 @@ namespace Prober.Forms
 
             //采用手选测试点
             var calibrateDie = GetSelectedDie();
-            if (calibrateDie == null) {
+            if (calibrateDie == null)
+            {
                 MessageBox.Show(this, "请选择Die。", "Info:");
                 return null;
-            }           
+            }
 
             posList = CalDoubleSideWithProbeDiePosWithAnyReticle(MapInfo, DieTestStatus, equipmentInfo, sortedDies, calibrateDie, itemCalibrate, TestItems, out subError, out retInfo, useFixPoint);
-            if (posList != null) {
-                if (!HeightCheck(posList, equipmentInfo.ChuckHeightDelta, out subError)) {
+            if (posList != null)
+            {
+                if (!HeightCheck(posList, equipmentInfo.ChuckHeightDelta, out subError))
+                {
                     posList = null;
-                }                
-            }    
-            
-            if (!string.IsNullOrEmpty(retInfo)) {
+                }
+            }
+
+            if (!string.IsNullOrEmpty(retInfo))
+            {
                 MessageBox.Show(retInfo);
 
                 //增加保存参数计算信息
@@ -369,10 +452,10 @@ namespace Prober.Forms
 
             string logPath = $"{path}\\Wafer_{MapInfo.Type}_{DateTime.Now.ToString("yyyyMMdd")}.txt";
             System.IO.File.AppendAllText(logPath, retInfo);
-        }        
+        }
 
         //全场景测试
-        private List<ItemCalPosInfo> CalDoubleSideWithProbeDiePosWithAnyReticle(WaferMapInfo MapInfo, List<bool[]> DieTestStatus, EquipmentCalibrationInfo EquipmentInfo, List<DieInfo> sortedDies, DieInfo calibrateDie, SubdiePosCaliInfo itemCalibrate, List<SubdieOrdinary> TestItems, out string subError, out string retInfo, bool useFixPoint = false) 
+        private List<ItemCalPosInfo> CalDoubleSideWithProbeDiePosWithAnyReticle(WaferMapInfo MapInfo, List<bool[]> DieTestStatus, EquipmentCalibrationInfo EquipmentInfo, List<DieInfo> sortedDies, DieInfo calibrateDie, SubdiePosCaliInfo itemCalibrate, List<SubdieOrdinary> TestItems, out string subError, out string retInfo, bool useFixPoint = false)
         {
             subError = string.Empty;
             retInfo = string.Empty;
@@ -436,7 +519,8 @@ namespace Prober.Forms
                         if (dis > HeightCalibrationInfo.ArearCircle)
                         {
                             HeightCalibrationInfo.GetDisMinPoint(chuckX, chuckY, out FAZ1, useFixPoint);
-                        }else
+                        }
+                        else
                         {
                             if (!HeightCalibrationInfo.GetHeight(chuckX, chuckY, out FAZ1, useFixPoint))
                             {
@@ -444,15 +528,15 @@ namespace Prober.Forms
                                 SubdieIndex++;
                                 continue;
                             }
-                        }                       
-                        
+                        }
+
                         posInfo.ChuckZ = EquipmentInfo.ProbeWaferContactZ0 + EquipmentInfo.ProbeCrimpingDepth + FAZ0 - FAZ1;
                     }
                     else
                     {
                         posInfo.ChuckZ = EquipmentInfo.ProbeWaferContactZ0 + EquipmentInfo.ProbeCrimpingDepth - EquipmentInfo.CapAltAdjustHeight;
                     }
-                        
+
                     posInfo.ChuckX = chuckX;
                     posInfo.ChuckY = chuckY;
                     /*
@@ -498,7 +582,8 @@ namespace Prober.Forms
             }
 
             sharedObjects.TryGetValue(PrivateSharedObjectKey.WAFER_TYPE, out value);
-            if (value == null) {
+            if (value == null)
+            {
                 MessageBox.Show(this, "清选择晶圆类型。", "Info:");
                 return false;
             }
@@ -520,46 +605,57 @@ namespace Prober.Forms
             return true;
         }
 
-        private bool CheckBeforeCalPos() {
+        private bool CheckBeforeCalPos()
+        {
             sharedObjects.TryGetValue(PrivateSharedObjectKey.WAFER_UPLOAD_STATUE, out object value);
             bool IsWaferLoad = (bool)value;
-            if (!IsWaferLoad) {
+            if (!IsWaferLoad)
+            {
                 MessageBox.Show(this, "请先进行上料操作。", "Info:");
                 return false;
             }
 
             sharedObjects.TryGetValue(PrivateSharedObjectKey.WAFER_TYPE, out value);
-            if (value == null) {
+            if (value == null)
+            {
                 MessageBox.Show(this, "清选择晶圆类型。", "Info:");
                 return false;
             }
-            string waferType = value as string;            
+            string waferType = value as string;
 
             var map = ConfigMgr.LoadWaferMapInfoByType(waferType);
-            if (map == null) {
+            if (map == null)
+            {
                 MessageBox.Show(this, "不存在该晶圆的信息", "Info:");
                 return false;
             }
 
-            if (map.isUseMarkPad) {
-                if (DialogResult.OK == MessageBox.Show("请确认已经更新图像模板，点击OK继续，否则取消", "Info", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)) {
-                    if (!IsPadMarkValid(map, out string errInfo)) {
+            if (map.isUseMarkPad)
+            {
+                if (DialogResult.OK == MessageBox.Show("请确认已经更新图像模板，点击OK继续，否则取消", "Info", MessageBoxButtons.OKCancel, MessageBoxIcon.Question))
+                {
+                    if (!IsPadMarkValid(map, out string errInfo))
+                    {
                         MessageBox.Show(this, errInfo, "Info:");
                         return false;
                     }
 
                     padCompensate = new Dictionary<string, CompensateData>();
                     padCompensate.Clear();
-                    sharedObjects.AddOrUpdate(PrivateSharedObjectKey.PAD_COMPENSATE_DIC,padCompensate,(key, oldValue) => padCompensate);
-                } else {
+                    sharedObjects.AddOrUpdate(PrivateSharedObjectKey.PAD_COMPENSATE_DIC, padCompensate, (key, oldValue) => padCompensate);
+                }
+                else
+                {
                     return false;
                 }
             }
 
-            if (!map.isUserCapAltimeter) {
+            if (!map.isUserCapAltimeter)
+            {
                 sharedObjects.TryGetValue(PrivateSharedObjectKey.HEIGHT_SCAN_MODE, out object mode);
-                string ScanMode = mode as string;   
-                if (!ConfigMgr.isHcalibrationFileExist(waferType, ScanMode)) {
+                string ScanMode = mode as string;
+                if (!ConfigMgr.isHcalibrationFileExist(waferType, ScanMode))
+                {
                     MessageBox.Show(this, "晶圆扫描高度信息不存在", "Info:");
                     return false;
                 }
@@ -567,10 +663,11 @@ namespace Prober.Forms
 
             WaferMotionPlat = waferHandle.WaferMotionPlat;
 
-             if (IsItemAngleChanged()) {
-                 MessageBox.Show(this, "角度已经调整，请重新标定基准项目。", "Info:");
-                 return false;
-             }
+            if (IsItemAngleChanged())
+            {
+                MessageBox.Show(this, "角度已经调整，请重新标定基准项目。", "Info:");
+                return false;
+            }
 
             var items = dgv_Items.DataSource as List<SubdieOrdinary>;
             if (items == null || items.Count < 1)
@@ -582,15 +679,18 @@ namespace Prober.Forms
             return true;
         }
 
-        public bool subdieOrdinaryCheck(List<SubdieOrdinary> item) {
-            if (basicDieName == string.Empty) {
+        public bool subdieOrdinaryCheck(List<SubdieOrdinary> item)
+        {
+            if (basicDieName == string.Empty)
+            {
                 MessageBox.Show(this, "未设置基准参考点", "Info:");
                 return false;
             }
 
             //1 找到basicDieName
-            SubdieOrdinary basic = item.FirstOrDefault(t => t.Subname == basicDieName); 
-            if (basic == null) {
+            SubdieOrdinary basic = item.FirstOrDefault(t => t.Subname == basicDieName);
+            if (basic == null)
+            {
                 MessageBox.Show(this, $"未设置基准参考点:{basicDieName}", "Info:");
                 return false;
             }
@@ -610,52 +710,65 @@ namespace Prober.Forms
             double LeftFa2RightFaMinY = LeftFa2RightFaMaxY;
 
             //2 比较所有die与参考die的左右fa和chuck坐标最大最小差异
-            foreach (SubdieOrdinary die in item) {
-                if((die.LeftX - die.ChuckX) <= LeftFa2PadMinX) {
+            foreach (SubdieOrdinary die in item)
+            {
+                if ((die.LeftX - die.ChuckX) <= LeftFa2PadMinX)
+                {
                     LeftFa2PadMinX = die.LeftX - die.ChuckX;
                 }
-                if ((die.LeftX - die.ChuckX) > LeftFa2PadMaxX) {
+                if ((die.LeftX - die.ChuckX) > LeftFa2PadMaxX)
+                {
                     LeftFa2PadMaxX = die.LeftX - die.ChuckX;
                 }
 
-                if ((die.RightX - die.ChuckX) <= RightFa2PadMinX) {
+                if ((die.RightX - die.ChuckX) <= RightFa2PadMinX)
+                {
                     RightFa2PadMinX = die.RightX - die.ChuckX;
                 }
-                if ((die.RightX - die.ChuckX) > RightFa2PadMaxX) {
+                if ((die.RightX - die.ChuckX) > RightFa2PadMaxX)
+                {
                     RightFa2PadMaxX = die.RightX - die.ChuckX;
                 }
 
-                if ((die.LeftX - die.RightX) <= LeftFa2RightFaMinX) {
+                if ((die.LeftX - die.RightX) <= LeftFa2RightFaMinX)
+                {
                     LeftFa2RightFaMinX = die.LeftX - die.RightX;
                 }
-                if ((die.LeftX - die.RightX) > LeftFa2RightFaMaxX) {
+                if ((die.LeftX - die.RightX) > LeftFa2RightFaMaxX)
+                {
                     LeftFa2RightFaMaxX = die.LeftX - die.RightX;
                 }
 
                 //Y
-                if ((die.LeftY - die.ChuckY) <= LeftFa2PadMinY) {
+                if ((die.LeftY - die.ChuckY) <= LeftFa2PadMinY)
+                {
                     LeftFa2PadMinY = die.LeftY - die.ChuckY;
                 }
-                if ((die.LeftY - die.ChuckY) > LeftFa2PadMaxY) {
+                if ((die.LeftY - die.ChuckY) > LeftFa2PadMaxY)
+                {
                     LeftFa2PadMaxY = die.LeftY - die.ChuckY;
                 }
 
-                if ((die.RightY - die.ChuckY) <= RightFa2PadMinY) {
+                if ((die.RightY - die.ChuckY) <= RightFa2PadMinY)
+                {
                     RightFa2PadMinY = die.RightY - die.ChuckY;
                 }
-                if ((die.RightY - die.ChuckY) > RightFa2PadMaxY) {
+                if ((die.RightY - die.ChuckY) > RightFa2PadMaxY)
+                {
                     RightFa2PadMaxY = die.RightY - die.ChuckY;
                 }
 
-                if ((die.LeftY - die.RightY) <= LeftFa2RightFaMinY) {
+                if ((die.LeftY - die.RightY) <= LeftFa2RightFaMinY)
+                {
                     LeftFa2RightFaMinY = die.LeftY - die.RightY;
                 }
-                if ((die.LeftY - die.RightY) > LeftFa2RightFaMaxY)  {
+                if ((die.LeftY - die.RightY) > LeftFa2RightFaMaxY)
+                {
                     LeftFa2RightFaMaxY = die.LeftY - die.RightY;
                 }
-            }   
-            
-            double leftFaShiftXMax = Math.Round(LeftFa2PadMaxX - (basic.LeftX - basic.ChuckX),2);
+            }
+
+            double leftFaShiftXMax = Math.Round(LeftFa2PadMaxX - (basic.LeftX - basic.ChuckX), 2);
             double rightFaShiftXMax = Math.Round(RightFa2PadMaxX - (basic.RightX - basic.ChuckX), 2);
             double leftFa2RightFaShiftXMax = Math.Round(LeftFa2RightFaMaxX - (basic.LeftX - basic.RightX), 2);
             double leftFaShiftYMax = Math.Round(LeftFa2PadMaxY - (basic.LeftY - basic.ChuckY), 2);
@@ -669,12 +782,13 @@ namespace Prober.Forms
             double rightFaShiftYMin = Math.Round(RightFa2PadMinY - (basic.RightY - basic.ChuckY), 2);
             double leftFa2RightFaShiftYMin = Math.Round(LeftFa2RightFaMinY - (basic.LeftY - basic.RightY), 2);
 
-            string info1 = $"Left FA与Pad之间X距离变化范围{leftFaShiftXMin}:{leftFaShiftXMax}, Left FA与Pad之间Y距离变化范围{leftFaShiftYMin}:{leftFaShiftYMax}" ;
+            string info1 = $"Left FA与Pad之间X距离变化范围{leftFaShiftXMin}:{leftFaShiftXMax}, Left FA与Pad之间Y距离变化范围{leftFaShiftYMin}:{leftFaShiftYMax}";
             string info2 = $"Right FA与Pad之间X距离变化范围{rightFaShiftXMin}:{rightFaShiftXMax}, Right FA与Pad之间Y距离变化范围{rightFaShiftYMin}:{rightFaShiftYMax}";
             string info3 = $"Left FA与Right FA之间X距离变化范围{leftFa2RightFaShiftXMin}:{leftFa2RightFaShiftXMax}, Left FA与Right FA之间Y距离变化范围{leftFa2RightFaShiftYMin}:{leftFa2RightFaShiftYMax}";
 
-            string info = info1 + Environment.NewLine + info2 + Environment.NewLine + info3 + Environment.NewLine+"点击Yes继续，否则退出";
-            if (DialogResult.Yes == MessageBox.Show(info, "Info", MessageBoxButtons.YesNo)){
+            string info = info1 + Environment.NewLine + info2 + Environment.NewLine + info3 + Environment.NewLine + "点击Yes继续，否则退出";
+            if (DialogResult.Yes == MessageBox.Show(info, "Info", MessageBoxButtons.YesNo))
+            {
                 return true;
             }
 
@@ -686,13 +800,15 @@ namespace Prober.Forms
             errMsg = string.Empty;
             //1：PAD模板文件存在
             string filePath = $"Configuration\\Wafer\\{MapInfo.Type}_Pad.shm";
-            if (!File.Exists(filePath)) {
+            if (!File.Exists(filePath))
+            {
                 errMsg = "第一模板信息文件不存在";
                 return false;
             }
 
             filePath = $"Configuration\\Wafer\\{MapInfo.Type}_Pad2.shm";
-            if (!File.Exists(filePath)) {
+            if (!File.Exists(filePath))
+            {
                 errMsg = "第二模板信息文件不存在";
                 return false;
             }
@@ -727,10 +843,15 @@ namespace Prober.Forms
             }
             else
             {
-                dgv_Items.DataSource = items;
+                //dgv_Items.DataSource = items;
+                foreach (var item in items)
+                {
+                    positionList.Add(item);
+                }
                 if (ConfigMgr.SaveSubdieOrdinaryToXML(items))
                 {
                     MessageBox.Show(this, "导入成功！", "提示：");
+                    SetDataReady(false);
                 }
                 else
                 {
@@ -758,7 +879,7 @@ namespace Prober.Forms
             if (calibrateDie == null)
             {
                 MessageBox.Show(this, "请选择Die", "Info:");
-                return ;
+                return;
             }
 
             if (dgv_Items.SelectedRows.Count < 1)
@@ -774,7 +895,7 @@ namespace Prober.Forms
             {
                 return;
             }
-            
+
             sharedObjects.TryGetValue(PrivateSharedObjectKey.WAFER_TYPE, out value);
             string waferType = value as string;
             var map = ConfigMgr.LoadWaferMapInfoByType(waferType);
@@ -783,7 +904,7 @@ namespace Prober.Forms
                 MessageBox.Show(this, "加载晶圆信息失败。", "Info:");
                 return;
             }
-            
+
             waferHandle.SetDieHighLight(calibrateDie);
             waferHandle.SetDieReference(calibrateDie);
 
@@ -796,7 +917,7 @@ namespace Prober.Forms
             info.LeftX = Convert.ToDouble(row.Cells[3].Value);
             info.LeftY = Convert.ToDouble(row.Cells[4].Value);
             info.RightX = Convert.ToDouble(row.Cells[5].Value);
-            info.RightY = Convert.ToDouble(row.Cells[6].Value);                 
+            info.RightY = Convert.ToDouble(row.Cells[6].Value);
 
             info.Chuck_AxisX = Math.Round(stageAxisDic[MyStageAxisKey.CHUCK_X].Position(), 2);
             info.Chuck_AxisY = Math.Round(stageAxisDic[MyStageAxisKey.CHUCK_Y].Position(), 2);
@@ -805,7 +926,7 @@ namespace Prober.Forms
             info.Right_AxisX = Math.Round(stageAxisDic[MyStageAxisKey.RIGHT_X].Position(), 2);
             info.Right_AxisY = Math.Round(stageAxisDic[MyStageAxisKey.RIGHT_Y].Position(), 2);
             string infoShow = $"设置基准位置: LeftX {info.Left_AxisX}, LeftY {info.Left_AxisY},ChuckX {info.Chuck_AxisX},ChuckY {info.Chuck_AxisY},RightX {info.Right_AxisX}, RightY {info.Right_AxisY}";
-             
+
             ReportMessage(infoShow);
 
             UIClass.ObjectToControl(info, panel_SubDieOrdinary);
@@ -829,13 +950,18 @@ namespace Prober.Forms
             waferHandle.DoMoveToBasePos(itemCal);
         }
 
-        private bool GetHeightEx(int channel, out double Value) {
+        private bool GetHeightEx(int channel, out double Value)
+        {
             Value = double.NaN;
 
-            for (int i = 0; i < 5; i++) {
-                if (altimeterCap.GetHeight(channel, out Value)) {
+            for (int i = 0; i < 5; i++)
+            {
+                if (altimeterCap.GetHeight(channel, out Value))
+                {
                     return true;
-                } else {
+                }
+                else
+                {
                     Thread.Sleep(500);
                 }
             }
@@ -843,15 +969,20 @@ namespace Prober.Forms
             return false;
         }
 
-        private bool GetHeight(int channel, out double Value) {
+        private bool GetHeight(int channel, out double Value)
+        {
             Value = double.NaN;
 
             List<double> points = new List<double>();
 
-            for (int i = 0; i < 5; i++) {
-                if (altimeterCap.GetHeight(channel, out double temp)) {
+            for (int i = 0; i < 5; i++)
+            {
+                if (altimeterCap.GetHeight(channel, out double temp))
+                {
                     points.Add(temp);
-                } else {
+                }
+                else
+                {
                     return false;
                 }
             }
@@ -885,7 +1016,7 @@ namespace Prober.Forms
             txt_Height_LeftZ.Text = (Math.Round(stageAxisDic[MyStageAxisKey.LEFT_Z].Position(), 2)).ToString();
             txt_Height_ChuckX_Left.Text = (Math.Round(stageAxisDic[MyStageAxisKey.CHUCK_X].Position(), 2)).ToString();
             txt_Height_ChuckY_Left.Text = (Math.Round(stageAxisDic[MyStageAxisKey.CHUCK_Y].Position(), 2)).ToString();
-            if(chb_UseCapAltimeter.Checked && rbtn_Left.Checked)
+            if (chb_UseCapAltimeter.Checked && rbtn_Left.Checked)
             {
                 GetHeight(Cap_Altimeter_Channel.Left_Channel, out height);
                 if ((height > 600) || height < 1)
@@ -893,10 +1024,10 @@ namespace Prober.Forms
                     MessageBox.Show($"电容测高仪数据异常:{height}");
                     return;
                 }
-                map.isUserCapAltimeter = true;  
+                map.isUserCapAltimeter = true;
 
                 double chuckPos = Math.Round(stageAxisDic[MyStageAxisKey.CHUCK_Z].Position(), 2);
-                sharedObjects.AddOrUpdate(PrivateSharedObjectKey.CHUCK_POS_PRE, chuckPos, (key, oldValue)=> chuckPos);
+                sharedObjects.AddOrUpdate(PrivateSharedObjectKey.CHUCK_POS_PRE, chuckPos, (key, oldValue) => chuckPos);
                 sharedObjects.AddOrUpdate(PrivateSharedObjectKey.LEFT_CAP_HEIGHT, height, (key, oldValue) => height);
             }
             else
@@ -1039,7 +1170,7 @@ namespace Prober.Forms
             txt_ProbeWaferContactZ0.Text = curChuckZ.ToString();
             double CcdPos = Math.Round(stageAxisDic[MyStageAxisKey.CCD_Z].Position(), 2);
             info.ProbeContactCCDPos = CcdPos;
-            txt_ProbeContactCCDPos.Text = CcdPos.ToString();    
+            txt_ProbeContactCCDPos.Text = CcdPos.ToString();
             if (ConfigMgr.SaveEquipmentCalibration(info))
             {
                 ReportMessage($"探针压接位置 {curChuckZ}设置成功");
@@ -1231,7 +1362,7 @@ namespace Prober.Forms
                 || Math.Abs(sx3 - info.BaseItem_RightSX) > step || Math.Abs(sy3 - info.BaseItem_RightSY) > step || Math.Abs(sz3 - info.BaseItem_RightSZ) > step;
         }
 
-        private void dgv_Items_DoubleClick(object sender, EventArgs e)
+        private void moveToButton_Click(object sender, EventArgs e)
         {
             if (!CheckBeforeItemMove())
             {
@@ -1254,7 +1385,7 @@ namespace Prober.Forms
                 return;
             }
 
-            if (MessageBox.Show("确定要运动到该位置吗？", "提示：", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            if (MessageBox.Show($"确定要运动到{subDieName}吗？", "提示：", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
             }
@@ -1265,7 +1396,7 @@ namespace Prober.Forms
                 try
                 {
                     MotionState = State.Busy;
-                    if(!waferHandle.MoveToCaliSubDie(itemCalPos, isStageMove, out string errInfo))
+                    if (!waferHandle.MoveToCaliSubDie(itemCalPos, isStageMove, out string errInfo))
                     {
                         Invoke(new Action(() => { MessageBox.Show(this, $"运动失败:{errInfo}", "Warning:"); }));
                     }
@@ -1286,6 +1417,8 @@ namespace Prober.Forms
                 finally
                 {
                     MotionState = State.Ready;
+
+                    MessageBox.Show($"移动完成");
                 }
             });
         }
@@ -1294,7 +1427,8 @@ namespace Prober.Forms
         {
             //显示Chuck位置
             var itemCal = ConfigMgr.LoadSubdiePosCalibrateInfo();
-            if (itemCal != null) {
+            if (itemCal != null)
+            {
                 UIClass.ObjectToControl(itemCal, panel_SubDieOrdinary);
             }
 
@@ -1303,22 +1437,26 @@ namespace Prober.Forms
 
             //显示左右六轴位置
             WaferMapInfo map = ConfigMgr.LoadWaferMapInfoByType(waferType);
-            if (map != null) {
+            if (map != null)
+            {
                 UIClass.ObjectToControl(map, panel_LeftFA_HeightCali);
                 UIClass.ObjectToControl(map, panel_RightFA_HeightCali);
 
-                if (map.isUseMarkPad) {
+                if (map.isUseMarkPad)
+                {
                     chb_UsePadMark.Checked = true;
                     gbox_MarkPad1.Enabled = true;
                     gbox_MarkPad2.Enabled = true;
-                }  else  {
+                }
+                else
+                {
                     chb_UsePadMark.Checked = false;
                     gbox_MarkPad1.Enabled = false;
                     gbox_MarkPad2.Enabled = false;
                 }
 
                 UIClass.ObjectToControl(map, panel_AssistMark);
-               
+
                 chb_UseCapAltimeter.Checked = map.isUserCapAltimeter;
                 gbox_AmSelect.Enabled = map.isUserCapAltimeter;
                 rbtn_Left.Checked = map.isUserCapAltimeterLeft;
@@ -1329,19 +1467,23 @@ namespace Prober.Forms
 
             //现在探针接触位置&压针深度
             EquipmentCalibrationInfo equipmentInfo = ConfigMgr.LoadEquipmentCalibration();
-            if (equipmentInfo != null) {
+            if (equipmentInfo != null)
+            {
                 UIClass.ObjectToControl(equipmentInfo, panel_ProbeCard_Cali);
             }
-        }        
+        }
 
         private void btn_SelectPadMark_Click(object sender, EventArgs e)
         {
-            if (!CheckBeforeMakePadMask(out WaferMapInfo map)) {
+            if (!CheckBeforeMakePadMask(out WaferMapInfo map))
+            {
                 return;
             }
 
-            Task.Run(() => {
-                try {
+            Task.Run(() =>
+            {
+                try
+                {
                     MotionState = State.Busy;
 
                     Invoke(new Action(() => { this.Cursor = Cursors.WaitCursor; }));
@@ -1350,15 +1492,18 @@ namespace Prober.Forms
                     Invoke(new Action(() => { this.Cursor = Cursors.Default; }));
 
                     FormSelectWaferMark frm = new FormSelectWaferMark(image);
-                    if (frm.ShowDialog() != DialogResult.Yes) {
-                        Invoke(new Action(() => {
+                    if (frm.ShowDialog() != DialogResult.Yes)
+                    {
+                        Invoke(new Action(() =>
+                        {
                             ReportMessage("用户未正常保存Mark点");
                             MessageBox.Show(this, "用户未正常保存Mark点", "提示：");
                         }));
                         return;
                     }
 
-                    if (frm.IsFinished) {
+                    if (frm.IsFinished)
+                    {
                         Invoke(new Action(() =>
                         {
                             map.MarkPadRow = Math.Round(frm.row.D, 2);
@@ -1368,20 +1513,25 @@ namespace Prober.Forms
                             map.MarkPadChuckX = Math.Round(stageAxisDic[MyStageAxisKey.CHUCK_X].Position(), 2);
                             map.MarkPadChuckY = Math.Round(stageAxisDic[MyStageAxisKey.CHUCK_Y].Position(), 2);
 
-                            txt_MarkPadRow.Text = map.MarkPadRow.ToString(); 
+                            txt_MarkPadRow.Text = map.MarkPadRow.ToString();
                             txt_MarkPadColumn.Text = map.MarkPadColumn.ToString();
                             txt_MarkPadChuckX.Text = map.MarkPadChuckX.ToString();
-                            txt_MarkPadChuckY.Text = map.MarkPadChuckY.ToString();  
+                            txt_MarkPadChuckY.Text = map.MarkPadChuckY.ToString();
                             ConfigMgr.SaveWaferMapInfobyType(map);
                             sharedObjects.AddOrUpdate(PrivateSharedObjectKey.WAFER_MAP, map, (key, oldValue) => map);
-                        })); 
+                        }));
                     }
-                } catch(Exception ex) {
-                    Invoke(new Action(() => {
+                }
+                catch (Exception ex)
+                {
+                    Invoke(new Action(() =>
+                    {
                         ReportMessage($"Mark点选择异常:{ex.Message}");
                         MessageBox.Show(this, $"Mark点选择异常:{ex.Message}", "提示：");
                     }));
-                } finally {
+                }
+                finally
+                {
                     MotionState = State.Ready;
                 }
             });
@@ -1429,7 +1579,8 @@ namespace Prober.Forms
                 return;
             }
 
-            Task.Run(() => {
+            Task.Run(() =>
+            {
                 try
                 {
                     MotionState = State.Busy;
@@ -1442,7 +1593,8 @@ namespace Prober.Forms
                     FormSelectWaferMark frm = new FormSelectWaferMark(image);
                     if (frm.ShowDialog() != DialogResult.Yes)
                     {
-                        Invoke(new Action(() => {
+                        Invoke(new Action(() =>
+                        {
                             ReportMessage("用户未正常保存Mark点");
                             MessageBox.Show(this, "用户未正常保存Mark点", "提示：");
                         }));
@@ -1471,7 +1623,8 @@ namespace Prober.Forms
                 }
                 catch (Exception ex)
                 {
-                    Invoke(new Action(() => {
+                    Invoke(new Action(() =>
+                    {
                         ReportMessage($"Mark点选择异常:{ex.Message}");
                         MessageBox.Show(this, $"Mark点选择异常:{ex.Message}", "提示：");
                     }));
@@ -1502,7 +1655,8 @@ namespace Prober.Forms
             string waferType = value as string;
 
             var map = ConfigMgr.LoadWaferMapInfoByType(waferType);
-            if (map == null) {
+            if (map == null)
+            {
                 MessageBox.Show(this, "不存在该晶圆的信息", "Info:");
                 return;
             }
@@ -1512,9 +1666,11 @@ namespace Prober.Forms
             sharedObjects.AddOrUpdate(PrivateSharedObjectKey.WAFER_MAP, map, (key, oldValue) => map);
         }
 
-        private void chb_UseCapAltimeter_CheckedChanged(object sender, EventArgs e) {
+        private void chb_UseCapAltimeter_CheckedChanged(object sender, EventArgs e)
+        {
             sharedObjects.TryGetValue(PrivateSharedObjectKey.WAFER_TYPE, out object value);
-            if (value == null) {
+            if (value == null)
+            {
                 MessageBox.Show("WaferType is Null");
                 return;
             }
@@ -1522,15 +1678,19 @@ namespace Prober.Forms
 
             //wafer map信息
             var map = ConfigMgr.LoadWaferMapInfoByType(waferType);
-            if (map == null) {
+            if (map == null)
+            {
                 MessageBox.Show(this, "不存在该晶圆的信息", "Info:");
                 return;
             }
 
-            if (chb_UseCapAltimeter.Checked) {
+            if (chb_UseCapAltimeter.Checked)
+            {
                 gbox_AmSelect.Enabled = true;
                 sharedObjects.AddOrUpdate(PrivateSharedObjectKey.IS_CAP_ALTIMETER, "1", (key, oldValue) => "1");
-            } else {
+            }
+            else
+            {
                 gbox_AmSelect.Enabled = false;
                 sharedObjects.AddOrUpdate(PrivateSharedObjectKey.IS_CAP_ALTIMETER, "0", (key, oldValue) => "0");
             }
@@ -1542,7 +1702,8 @@ namespace Prober.Forms
         private void rbtn_Left_CheckedChanged(object sender, EventArgs e)
         {
             sharedObjects.TryGetValue(PrivateSharedObjectKey.WAFER_TYPE, out object value);
-            if (value == null) {
+            if (value == null)
+            {
                 MessageBox.Show("WaferType is Null");
                 return;
             }
@@ -1550,15 +1711,19 @@ namespace Prober.Forms
 
             //wafer map信息
             var map = ConfigMgr.LoadWaferMapInfoByType(waferType);
-            if (map == null) {
+            if (map == null)
+            {
                 MessageBox.Show(this, "不存在该晶圆的信息", "Info:");
                 return;
             }
 
-            if (rbtn_Left.Checked) {
+            if (rbtn_Left.Checked)
+            {
                 map.isUserCapAltimeterLeft = true;
                 sharedObjects.AddOrUpdate(PrivateSharedObjectKey.USE_LEFT_CAP_ALTIMETER, "1", (key, oldValue) => "1");
-            }  else {
+            }
+            else
+            {
                 map.isUserCapAltimeterLeft = false;
                 sharedObjects.AddOrUpdate(PrivateSharedObjectKey.USE_LEFT_CAP_ALTIMETER, "0", (key, oldValue) => "0");
             }
@@ -1567,9 +1732,11 @@ namespace Prober.Forms
             sharedObjects.AddOrUpdate(PrivateSharedObjectKey.WAFER_MAP, map, (key, oldValue) => map);
         }
 
-        private void rbtn_Right_CheckedChanged(object sender, EventArgs e) {
+        private void rbtn_Right_CheckedChanged(object sender, EventArgs e)
+        {
             sharedObjects.TryGetValue(PrivateSharedObjectKey.WAFER_TYPE, out object value);
-            if (value == null) {
+            if (value == null)
+            {
                 MessageBox.Show("WaferType is Null");
                 return;
             }
@@ -1577,15 +1744,19 @@ namespace Prober.Forms
 
             //wafer map信息
             var map = ConfigMgr.LoadWaferMapInfoByType(waferType);
-            if (map == null) {
+            if (map == null)
+            {
                 MessageBox.Show(this, "不存在该晶圆的信息", "Info:");
                 return;
             }
 
-            if (rbtn_Right.Checked) {
+            if (rbtn_Right.Checked)
+            {
                 map.isUserCapAltimeterLeft = false;
                 sharedObjects.AddOrUpdate(PrivateSharedObjectKey.USE_LEFT_CAP_ALTIMETER, "0", (key, oldValue) => "0");
-            } else {
+            }
+            else
+            {
                 map.isUserCapAltimeterLeft = true;
                 sharedObjects.AddOrUpdate(PrivateSharedObjectKey.USE_LEFT_CAP_ALTIMETER, "1", (key, oldValue) => "1");
             }
