@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<config version="1.0" is_virtual_running="true">
+<config version="1.0" is_virtual_running="false">
 	<instruments>		
 		<instrument id="pma1" category="PMA" vendor="KEYSIGHT" model="_816xB" visa_resource="GPIB0::21::INSTR" decription="" />
 		

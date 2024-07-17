@@ -165,6 +165,8 @@
     <Compile Include="MySmu\SmuKeithley2602B.cs" />
     <Compile Include="MySmu\StandaloneSmu.cs" />
     <Compile Include="MySmu\StandaloneSmuFactory.cs" />
+    <Compile Include="MySmu\EnumSmuSenseMode.cs" />
+    <Compile Include="MySmu\EnumSmuSourceOffMode.cs" />
     <Compile Include="MySmu\VirtualSmu.cs" />
     <Compile Include="MyTec\ITec.cs" />
     <Compile Include="MyTec\StandaloneTec.cs" />

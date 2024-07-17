@@ -10,9 +10,12 @@ using Keithley.Ke26XXA.Interop;
 using MyInstruments.MyEnum;
 using MyInstruments.MyException;
 
-namespace MyInstruments.MySmu {
-    public sealed class SmuKeithley2602B : StandaloneSmu, ITriggerIn {
-        public SmuKeithley2602B(string id) : base(id) {
+namespace MyInstruments.MySmu
+{
+    public sealed class SmuKeithley2602B : StandaloneSmu, ITriggerIn
+    {
+        public SmuKeithley2602B(string id) : base(id)
+        {
             Vendor = EnumInstrumentVendor.KEITHLEY.ToString();
             SupportedModels = new HashSet<string> { EnumModelKeithley._2602B.ToString() };
 
@@ -20,22 +23,42 @@ namespace MyInstruments.MySmu {
             measureTypes.Clear();
         }
 
-        public override void Connect(string visaResource) {
-            if (keithley2602b.Initialized) {
+        public override void Connect(string visaResource)
+        {
+            this.VisaResource = visaResource;
+            if (keithley2602b.Initialized)
+            {
                 return;
             }
 
-            keithley2602b.Initialize(visaResource, true, false, "QueryInstrStatus=True");
+            //keithley2602b.Initialize(visaResource, true, false, "QueryInstrStatus=True");
+            keithley2602b.Initialize(visaResource, false, false, "QueryInstrStatus=False"); //陈军修改，不回读
+
+            //用下面的代码进行了一下测试，证明修改没问题
+            //TurnOn("1", "A");
+            //SetMeasurementType("1", "A", EnumSmuMeasurementType.CURRENT);
+            //double ret = Measure("1", "A");
+
+            //Leon用下面的代码验证了读值正确
+            //keithley2602b.Source.OutputEnabled["A"] = false;
+            //keithley2602b.Source.Function["A"] = Ke26XXASourceFunctionEnum.Ke26XXASourceFunctionDCVolts;
+            //keithley2602b.Source.Voltage.Limit["A"] = 2;
+            //keithley2602b.Source.Voltage.Level["A"] = 1;
+            //keithley2602b.Source.OutputEnabled["A"] = true;
+            //var ret = keithley2602b.Measurement.Current.Measure("A");
         }
 
-        public override void Disconnect() {
+        public override void Disconnect()
+        {
             keithley2602b.Close();
         }
 
-        public override void SetSourceType(string slot, string channel, EnumSmuSourceType sourceType) {
+        public override void SetSourceType(string slot, string channel, EnumSmuSourceType sourceType)
+        {
             ThrowExceptionWhenSlotOrChannelInvalid(slot, channel);
             string regularChannel = GetRegularChannelString(channel);
-            switch (sourceType) {
+            switch (sourceType)
+            {
                 case EnumSmuSourceType.VOLTAGE:
                     keithley2602b.Source.Function[regularChannel] = Ke26XXASourceFunctionEnum.Ke26XXASourceFunctionDCVolts;
                     break;
@@ -43,28 +66,59 @@ namespace MyInstruments.MySmu {
                     keithley2602b.Source.Function[regularChannel] = Ke26XXASourceFunctionEnum.Ke26XXASourceFunctionDCAmps;
                     break;
             }
-            if (sourceTypes.ContainsKey(regularChannel)) {
+            if (sourceTypes.ContainsKey(regularChannel))
+            {
                 sourceTypes[regularChannel] = sourceType;
-            } else {
+            }
+            else
+            {
                 sourceTypes.Add(regularChannel, sourceType);
             }
         }
 
-        public override void SetMeasurementType(string slot, string channel, EnumSmuMeasurementType measurementType) {
+        public override void SetMeasurementType(string slot, string channel, EnumSmuMeasurementType measurementType)
+        {
             ThrowExceptionWhenSlotOrChannelInvalid(slot, channel);
             string regularChannel = GetRegularChannelString(channel);
-            if (measureTypes.ContainsKey(regularChannel)) {
+            if (measureTypes.ContainsKey(regularChannel))
+            {
                 measureTypes[regularChannel] = measurementType;
-            } else {
+            }
+            else
+            {
                 measureTypes.Add(regularChannel, measurementType);
             }
         }
+        public void SetSourceOffType(string slot, string channel, EnumSmuSourceType sourceOffType)
+        {
+            ThrowExceptionWhenSlotOrChannelInvalid(slot, channel);
+            string regularChannel = GetRegularChannelString(channel);
+            switch (sourceOffType)
+            {
+                case EnumSmuSourceType.VOLTAGE:
+                    keithley2602b.Source.OutputOffFunction[regularChannel] = Ke26XXASourceFunctionEnum.Ke26XXASourceFunctionDCVolts;
+                    break;
+                case EnumSmuSourceType.CURRENT:
+                    keithley2602b.Source.OutputOffFunction[regularChannel] = Ke26XXASourceFunctionEnum.Ke26XXASourceFunctionDCAmps;
+                    break;
+            }
+            if (sourceOffTypes.ContainsKey(regularChannel))
+            {
+                sourceOffTypes[regularChannel] = sourceOffType;
+            }
+            else
+            {
+                sourceOffTypes.Add(regularChannel, sourceOffType);
+            }
+        }
 
-        public override void SetSourceLevel(string slot, string channel, double level) {
+        public override void SetSourceLevel(string slot, string channel, double level)
+        {
             ThrowExceptionWhenSlotOrChannelInvalid(slot, channel);
             string regularChannel = GetRegularChannelString(channel);
             var sourceType = GetSourceType(regularChannel);
-            switch (sourceType) {
+            switch (sourceType)
+            {
                 case EnumSmuSourceType.CURRENT:
                     keithley2602b.Source.Current.Level[regularChannel] = level;
                     break;
@@ -74,12 +128,14 @@ namespace MyInstruments.MySmu {
             }
         }
 
-        public override double Measure(string slot, string channel) {
+        public override double Measure(string slot, string channel)
+        {
             ThrowExceptionWhenSlotOrChannelInvalid(slot, channel);
 
             string regularChannel = GetRegularChannelString(channel);
             var measureType = GetMeasureType(regularChannel);
-            switch (measureType) {
+            switch (measureType)
+            {
                 case EnumSmuMeasurementType.CURRENT:
                     return keithley2602b.Measurement.Current.Measure(regularChannel);
                 case EnumSmuMeasurementType.VOLTAGE:
@@ -89,22 +145,26 @@ namespace MyInstruments.MySmu {
             }
         }
 
-        public override void TurnOff(string slot, string channel) {
+        public override void TurnOff(string slot, string channel)
+        {
             ThrowExceptionWhenSlotOrChannelInvalid(slot, channel);
             string regularChannel = GetRegularChannelString(channel);
             keithley2602b.Source.OutputEnabled[regularChannel] = false;
         }
 
-        public override void TurnOn(string slot, string channel) {
+        public override void TurnOn(string slot, string channel)
+        {
             ThrowExceptionWhenSlotOrChannelInvalid(slot, channel);
             string regularChannel = GetRegularChannelString(channel);
             keithley2602b.Source.OutputEnabled[regularChannel] = true;
         }
 
-        public override void SetSourceLimit(string slot, string channel, double limit) {
+        public override void SetSourceLimit(string slot, string channel, double limit)
+        {
             string regularChannel = GetRegularChannelString(channel);
             var sourceType = GetSourceType(regularChannel);
-            switch (sourceType) {
+            switch (sourceType)
+            {
                 case EnumSmuSourceType.CURRENT:
                     keithley2602b.Source.Current.Limit[regularChannel] = limit;
                     break;
@@ -114,19 +174,24 @@ namespace MyInstruments.MySmu {
             }
         }
 
-        public override void ThrowExceptionWhenSlotOrChannelInvalid(string slot, string channel) {
-            if (!Enum.TryParse(GetRegularChannelString(channel), out EnumChannels enumChannel)) {
+        public override void ThrowExceptionWhenSlotOrChannelInvalid(string slot, string channel)
+        {
+            if (!Enum.TryParse(GetRegularChannelString(channel), out EnumChannels enumChannel))
+            {
                 LOGGER.Error($"channel(={channel}) is invalid for SMU Keithley 2602B!");
                 throw new InvalidSlotOrChannelOfInstrumentException(slot, channel, this.Vendor, this.CurrentModel);
             }
         }
 
-        public override (bool isOk, string errorText) SmuAreSettingsValid(Dictionary<string, string> settings) {
-            foreach (var setting in settings) {
+        public override (bool isOk, string errorText) SmuAreSettingsValid(Dictionary<string, string> settings)
+        {
+            foreach (var setting in settings)
+            {
                 string key = setting.Key;
                 string value = setting.Value;
                 var checkResult = IsSettingValid(key, value);
-                if (!checkResult.isOk) {
+                if (!checkResult.isOk)
+                {
                     return checkResult;
                 }
             }
@@ -134,58 +199,80 @@ namespace MyInstruments.MySmu {
             return (true, string.Empty);
         }
 
-        public override bool SmuBatchSetting(string slot, string channel, Dictionary<string, string> settings) {
+        public override bool SmuBatchSetting(string slot, string channel, Dictionary<string, string> settings)
+        {
             ThrowExceptionWhenSlotOrChannelInvalid(slot, channel);
 
             string regularChannel = GetRegularChannelString(channel);
             var tryConvertResult = TryConvertToEnumSettings(settings);
-            if (!tryConvertResult.isOk) {
+            if (!tryConvertResult.isOk)
+            {
                 return false;
             }
             Dictionary<EnumKeithleySmuSetting, string> enumSettings = tryConvertResult.result;
 
-            if (enumSettings.ContainsKey(EnumKeithleySmuSetting.SOURCE_TYPE)) {
+            if (enumSettings.ContainsKey(EnumKeithleySmuSetting.RESET))
+            {
+                var isResetStr = enumSettings[EnumKeithleySmuSetting.RESET];
+                if (!bool.TryParse(isResetStr, out bool isReset))
+                {
+                    LOGGER.Error($"Reset value(={isResetStr}) is invalid of Keithley 2602B!");
+                    return false;
+                }
+                if (isReset)
+                    keithley2602b.Measurement.Reset(regularChannel);
+            }
+            if (enumSettings.ContainsKey(EnumKeithleySmuSetting.SOURCE_TYPE))
+            {
                 string strSourceType = enumSettings[EnumKeithleySmuSetting.SOURCE_TYPE];
-                if (!Enum.TryParse(strSourceType, out EnumSmuSourceType enumSourceType)) {
+                if (!Enum.TryParse(strSourceType, out EnumSmuSourceType enumSourceType))
+                {
                     LOGGER.Error($"Source type(={strSourceType}) is invalid of Keithley 2602B!");
                     return false;
                 }
                 SetSourceType(slot, channel, enumSourceType);
             }
-            if (enumSettings.ContainsKey(EnumKeithleySmuSetting.MEASURE_TYPE)) {
+            if (enumSettings.ContainsKey(EnumKeithleySmuSetting.MEASURE_TYPE))
+            {
                 string strMeasureType = enumSettings[EnumKeithleySmuSetting.MEASURE_TYPE];
-                if (!Enum.TryParse(strMeasureType, out EnumSmuMeasurementType enumMeasureType)) {
+                if (!Enum.TryParse(strMeasureType, out EnumSmuMeasurementType enumMeasureType))
+                {
                     LOGGER.Error($"Measurement type(={strMeasureType}) is invalid of Keithley 2602B!");
                     return false;
                 }
                 SetMeasurementType(slot, channel, enumMeasureType);
             }
 
-            foreach (var setting in enumSettings) {
+            foreach (var setting in enumSettings)
+            {
                 EnumKeithleySmuSetting settingKey = setting.Key;
                 string strValue = setting.Value;
 
                 EnumSmuSourceType sourceType;
+                EnumSmuSourceType sourceOffType;
                 EnumSmuMeasurementType measureType;
-                switch (settingKey) {
+                switch (settingKey)
+                {
                     case EnumKeithleySmuSetting.SOURCE_TYPE:
                         break;
                     case EnumKeithleySmuSetting.SOURCE_LIMIT:
                         sourceType = GetSourceType(regularChannel);
                         double sourceLimit = ConvertToDoubleValue(strValue, slot, regularChannel, settingKey);
-                        switch (sourceType) {
+                        switch (sourceType)
+                        {
                             case EnumSmuSourceType.CURRENT:
-                                keithley2602b.Source.Current.Limit[regularChannel] = sourceLimit;
+                                keithley2602b.Source.Voltage.Limit[regularChannel] = sourceLimit;
                                 break;
                             case EnumSmuSourceType.VOLTAGE:
-                                keithley2602b.Source.Voltage.Limit[regularChannel] = sourceLimit;
+                                keithley2602b.Source.Current.Limit[regularChannel] = sourceLimit;
                                 break;
                         }
                         break;
                     case EnumKeithleySmuSetting.SOURCE_LEVEL:
                         sourceType = GetSourceType(regularChannel);
                         double sourceLevel = ConvertToDoubleValue(strValue, slot, regularChannel, settingKey);
-                        switch (sourceType) {
+                        switch (sourceType)
+                        {
                             case EnumSmuSourceType.CURRENT:
                                 keithley2602b.Source.Current.Level[regularChannel] = sourceLevel;
                                 break;
@@ -217,7 +304,8 @@ namespace MyInstruments.MySmu {
                     case EnumKeithleySmuSetting.MEASURE_IS_AUTORANGE:
                         measureType = GetMeasureType(regularChannel);
                         bool isMeasureAutoRange = ConvertToBooleanValue(strValue, slot, regularChannel, settingKey);
-                        switch (measureType) {
+                        switch (measureType)
+                        {
                             case EnumSmuMeasurementType.CURRENT:
                                 keithley2602b.Measurement.Current.AutoRangeEnabled[regularChannel] = isMeasureAutoRange;
                                 break;
@@ -229,7 +317,8 @@ namespace MyInstruments.MySmu {
                     case EnumKeithleySmuSetting.MEASURE_RANGE:
                         measureType = GetMeasureType(regularChannel);
                         double measureRange = ConvertToDoubleValue(strValue, slot, regularChannel, settingKey);
-                        switch (measureType) {
+                        switch (measureType)
+                        {
                             case EnumSmuMeasurementType.CURRENT:
                                 keithley2602b.Measurement.Current.Range[regularChannel] = measureRange;
                                 break;
@@ -247,6 +336,83 @@ namespace MyInstruments.MySmu {
                         bool isEnabled = ConvertToBooleanValue(strValue, slot, regularChannel, settingKey);
                         keithley2602b.Source.OutputEnabled[regularChannel] = isEnabled;
                         break;
+                    case EnumKeithleySmuSetting.RESET:
+                        break;
+                    case EnumKeithleySmuSetting.SOURCE_HIGHC:
+                        isEnabled = ConvertToBooleanValue(strValue, slot, regularChannel, settingKey);
+                        keithley2602b.Source.HighCMode[regularChannel] = isEnabled;
+                        break;
+                    case EnumKeithleySmuSetting.SOURCE_RANGE:
+                        sourceType = GetSourceType(regularChannel);
+                        double sourceRange = ConvertToDoubleValue(strValue, slot, regularChannel, settingKey);
+                        switch (sourceType)
+                        {
+                            case EnumSmuSourceType.CURRENT:
+                                keithley2602b.Source.Current.Range[regularChannel] = sourceRange;
+                                break;
+                            case EnumSmuSourceType.VOLTAGE:
+                                keithley2602b.Source.Voltage.Range[regularChannel] = sourceRange;
+                                break;
+                        }
+                        break;
+                    case EnumKeithleySmuSetting.SENSE_MODE:
+                        if (!Enum.TryParse(strValue, out EnumSmuSenseMode enumSmuSenseMode))
+                        {
+                            LOGGER.Error($"Sense mode(={strValue}) is invalid of Keithley 2602B!");
+                            return false;
+                        }
+                        switch (enumSmuSenseMode)
+                        {
+                            case EnumSmuSenseMode.LOCAL:
+                                keithley2602b.Measurement.SenseMode[regularChannel] = Ke26XXASenseModeEnum.Ke26XXASenseModeLocal;
+                                break;
+                            case EnumSmuSenseMode.REMOTE:
+                                keithley2602b.Measurement.SenseMode[regularChannel] = Ke26XXASenseModeEnum.Ke26XXASenseModeRemote;
+                                break;
+                        }
+                        break;
+                    case EnumKeithleySmuSetting.SOURCE_OFF_MODE:
+                        if (!Enum.TryParse(strValue, out EnumSmuSourceOffMode enumSmuSourceOffMode))
+                        {
+                            LOGGER.Error($"Source off mode(={strValue}) is invalid of Keithley 2602B!");
+                            return false;
+                        }
+                        switch (enumSmuSourceOffMode)
+                        {
+                            case EnumSmuSourceOffMode.NORMAL:
+                                keithley2602b.Source.OutputOffMode[regularChannel] = Ke26XXASourceOutputOffModeEnum.Ke26XXASourceOutputOffModeNormal;
+                                break;
+                            case EnumSmuSourceOffMode.ZERO:
+                                keithley2602b.Source.OutputOffMode[regularChannel] = Ke26XXASourceOutputOffModeEnum.Ke26XXASourceOutputOffModeZero;
+                                break;
+                            case EnumSmuSourceOffMode.HIGHZ:
+                                keithley2602b.Source.OutputOffMode[regularChannel] = Ke26XXASourceOutputOffModeEnum.Ke26XXASourceOutputOffModeHighZ;
+                                break;
+                        }
+                        break;
+                    case EnumKeithleySmuSetting.SOURCE_OFF_TYPE:
+
+                        if (!Enum.TryParse(strValue, out EnumSmuSourceType enumSourceOffType))
+                        {
+                            LOGGER.Error($"Source off type(={strValue}) is invalid of Keithley 2602B!");
+                            return false;
+                        }
+                        SetSourceOffType(slot, regularChannel, enumSourceOffType);
+                        break;
+                    case EnumKeithleySmuSetting.SOURCE_OFF_LIMIT:
+                        sourceOffType = GetSourceOffType(regularChannel);
+
+                        double sourceOffLimit = ConvertToDoubleValue(strValue, slot, regularChannel, settingKey);
+                        switch (sourceOffType)
+                        {
+                            case EnumSmuSourceType.CURRENT:
+                                keithley2602b.Source.OutputOffVoltageLimit[regularChannel] = sourceOffLimit;
+                                break;
+                            case EnumSmuSourceType.VOLTAGE:
+                                keithley2602b.Source.Current.OffLimit[regularChannel] = sourceOffLimit;
+                                break;
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -255,21 +421,26 @@ namespace MyInstruments.MySmu {
             return true;
         }
 
-        public (bool isOk, string errorText) IsTriggerInSettingKeyMissed(Dictionary<string, string> settings) {
+        public (bool isOk, string errorText) IsTriggerInSettingKeyMissed(Dictionary<string, string> settings)
+        {
             HashSet<string> validKeySet = new HashSet<string>();
-            foreach (EnumTriggerCommonSetting setting in Enum.GetValues(typeof(EnumTriggerCommonSetting))) {
+            foreach (EnumTriggerCommonSetting setting in Enum.GetValues(typeof(EnumTriggerCommonSetting)))
+            {
                 validKeySet.Add(setting.ToString());
             }
-            foreach (EnumTriggerInstrument slotChannel in Enum.GetValues(typeof(EnumTriggerInstrument))) {
+            foreach (EnumTriggerInstrument slotChannel in Enum.GetValues(typeof(EnumTriggerInstrument)))
+            {
                 validKeySet.Add(slotChannel.ToString());
             }
-            foreach (EnumTriggerInSetting setting in Enum.GetValues(typeof(EnumTriggerInSetting))) {
+            foreach (EnumTriggerInSetting setting in Enum.GetValues(typeof(EnumTriggerInSetting)))
+            {
                 validKeySet.Add(setting.ToString());
             }
 
             string errorText = string.Empty;
             var inputKeySet = settings.Keys.ToHashSet();
-            if (!validKeySet.SetEquals(inputKeySet)) {
+            if (!validKeySet.SetEquals(inputKeySet))
+            {
                 string validKeys = $"{string.Join(",", validKeySet)}";
                 string inputKeys = $"{string.Join(",", inputKeySet)}";
                 errorText = $"Current keys of trigger-in-settings is invalid! Valid keys are {{{validKeys}}}; Current keys are{{{inputKeys}}}.";
@@ -280,23 +451,33 @@ namespace MyInstruments.MySmu {
             return (true, string.Empty);
         }
 
-        public (bool isOk, string errorText) CheckTriggerInSettings(Dictionary<string, string> settings) {
+        public (bool isOk, string errorText) CheckTriggerInSettings(Dictionary<string, string> settings)
+        {
             string errorText = string.Empty;
-            foreach (var setting in settings) {
-                if (setting.Key.Equals(EnumTriggerInSetting.NPLC.ToString())) {
-                    if (!double.TryParse(settings[setting.Key], out double nplc)) {
+            foreach (var setting in settings)
+            {
+                if (setting.Key.Equals(EnumTriggerInSetting.NPLC.ToString()))
+                {
+                    if (!double.TryParse(settings[setting.Key], out double nplc))
+                    {
                         errorText = $"In trigger-in-settings, {EnumTriggerInSetting.NPLC.ToString()}(={settings[EnumTriggerInSetting.NPLC.ToString()]}) should be a double!";
                         LOGGER.Error(errorText);
                         return (false, errorText);
                     }
-                } else if (setting.Key.Equals(EnumTriggerInSetting.TIME_IN_MS_PER_STEP.ToString())) {
-                    if (!int.TryParse(settings[setting.Key], out int timeInMsPerStep)) {
+                }
+                else if (setting.Key.Equals(EnumTriggerInSetting.TIME_IN_MS_PER_STEP.ToString()))
+                {
+                    if (!int.TryParse(settings[setting.Key], out int timeInMsPerStep))
+                    {
                         errorText = $"In trigger-in-settings, {EnumTriggerInSetting.TIME_IN_MS_PER_STEP.ToString()}(={settings[EnumTriggerInSetting.TIME_IN_MS_PER_STEP.ToString()]}) should be an integer!";
                         LOGGER.Error(errorText);
                         return (false, errorText);
                     }
-                } else if (setting.Key.Equals(EnumTriggerInSetting.RANGE.ToString())) {
-                    if (!double.TryParse(settings[setting.Key], out double range)) {
+                }
+                else if (setting.Key.Equals(EnumTriggerInSetting.RANGE.ToString()))
+                {
+                    if (!double.TryParse(settings[setting.Key], out double range))
+                    {
                         errorText = $"In trigger-in-settings, {EnumTriggerInSetting.RANGE.ToString()}(={settings[EnumTriggerInSetting.RANGE.ToString()]}) should be a double!";
                         LOGGER.Error(errorText);
                         return (false, errorText);
@@ -307,7 +488,8 @@ namespace MyInstruments.MySmu {
             return (true, string.Empty);
         }
 
-        public bool PrepareTriggeringIn(Dictionary<string, string> settings) {
+        public bool PrepareTriggeringIn(Dictionary<string, string> settings)
+        {
             string slot = settings[EnumTriggerInstrument.SLOT.ToString()];
             string channel = settings[EnumTriggerInstrument.CHANNEL.ToString()];
             int.TryParse(settings[EnumTriggerCommonSetting.STEP_NUMBER.ToString()], out int stepNumber);
@@ -315,99 +497,121 @@ namespace MyInstruments.MySmu {
             int.TryParse(settings[EnumTriggerInSetting.TIME_IN_MS_PER_STEP.ToString()], out int timeInMsPerStep);
             double.TryParse(settings[EnumTriggerInSetting.RANGE.ToString()], out double range);
 
-            try {
+            try
+            {
                 //[gyh]: to be added---setting before trigger;
                 return true;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 LOGGER.Error(MyLogUtility.GenerateExceptionLog(ex));
                 return false;
             }
         }
 
-        public bool StartTriggeringIn() {
-            try {
+        public bool StartTriggeringIn()
+        {
+            try
+            {
                 //[gyh]: to be added---setting before trigger;
                 return true;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 LOGGER.Error(MyLogUtility.GenerateExceptionLog(ex));
                 return false;
             }
         }
 
-        public void WaitForTriggeringInCompleted() {
+        public void WaitForTriggeringInCompleted()
+        {
             //[gyh]: to be added---setting before trigger;
         }
 
-        public (bool isOk, List<double> data) GetTriggeringInData() {
+        public (bool isOk, List<double> data) GetTriggeringInData()
+        {
             //[gyh]: to be added---setting before trigger;
             throw new NotImplementedException();
         }
 
         #region private
-        private (bool isOk, string errorText) IsSettingValid(string key, string value) {
+        private (bool isOk, string errorText) IsSettingValid(string key, string value)
+        {
             string errorText = string.Empty;
-            if (!Enum.TryParse(key, out EnumKeithleySmuSetting enumSmuSetting)) {
+            if (!Enum.TryParse(key, out EnumKeithleySmuSetting enumSmuSetting))
+            {
                 errorText = $"setting key={key} is invalid for Keighley SMU!";
                 return (false, errorText);
             }
 
-            switch (enumSmuSetting) {
+            switch (enumSmuSetting)
+            {
                 case EnumKeithleySmuSetting.SOURCE_TYPE:
-                    if (!Enum.TryParse(value, out EnumSmuSourceType enumSourceType)) {
+                    if (!Enum.TryParse(value, out EnumSmuSourceType enumSourceType))
+                    {
                         errorText = $"setting value={value} is invalid for {EnumKeithleySmuSetting.SOURCE_TYPE.ToString()} of SMU Keithley 2602B!"; ;
                         return (false, errorText);
                     }
                     break;
                 case EnumKeithleySmuSetting.SOURCE_LIMIT:
-                    if (!double.TryParse(value, out double sourceLimit)) {
+                    if (!double.TryParse(value, out double sourceLimit))
+                    {
                         errorText = $"setting value={value} is invalid for {EnumKeithleySmuSetting.SOURCE_LIMIT.ToString()} of SMU Keithley 2602B!"; ;
                         return (false, errorText);
                     }
                     break;
                 case EnumKeithleySmuSetting.SOURCE_LEVEL:
-                    if (!double.TryParse(value, out double sourceLevel)) {
+                    if (!double.TryParse(value, out double sourceLevel))
+                    {
                         errorText = $"setting value={value} is invalid for {EnumKeithleySmuSetting.SOURCE_LEVEL.ToString()} of SMU Keithley 2602B!"; ;
                         return (false, errorText);
                     }
                     break;
                 case EnumKeithleySmuSetting.MEASURE_TYPE:
-                    if (!Enum.TryParse(value, out EnumSmuMeasurementType enumMeasureType)) {
+                    if (!Enum.TryParse(value, out EnumSmuMeasurementType enumMeasureType))
+                    {
                         errorText = $"setting value={value} is invalid for {EnumKeithleySmuSetting.MEASURE_TYPE.ToString()} of SMU Keithley 2602B!"; ;
                         return (false, errorText);
                     }
                     break;
                 case EnumKeithleySmuSetting.MEASURE_COUNT:
-                    if (!int.TryParse(value, out int measureCount)) {
+                    if (!int.TryParse(value, out int measureCount))
+                    {
                         errorText = $"setting value={value} is invalid for {EnumKeithleySmuSetting.MEASURE_COUNT.ToString()} of SMU Keithley 2602B!"; ;
                         return (false, errorText);
                     }
                     break;
                 case EnumKeithleySmuSetting.MEASURE_DELAY:
-                    if (!double.TryParse(value, out double measureDelay)) {
+                    if (!double.TryParse(value, out double measureDelay))
+                    {
                         errorText = $"setting value={value} is invalid for {EnumKeithleySmuSetting.MEASURE_DELAY.ToString()} of SMU Keithley 2602B!"; ;
                         return (false, errorText);
                     }
                     break;
                 case EnumKeithleySmuSetting.MEASURE_NPLC:
-                    if (!double.TryParse(value, out double nplc)) {
+                    if (!double.TryParse(value, out double nplc))
+                    {
                         errorText = $"setting value={value} is invalid for {EnumKeithleySmuSetting.MEASURE_NPLC.ToString()} of SMU Keithley 2602B!"; ;
                         return (false, errorText);
                     }
                     break;
                 case EnumKeithleySmuSetting.MEASURE_IS_AUTORANGE:
-                    if (!bool.TryParse(value, out bool measureIsAutoRange)) {
+                    if (!bool.TryParse(value, out bool measureIsAutoRange))
+                    {
                         errorText = $"setting value={value} is invalid for {EnumKeithleySmuSetting.MEASURE_IS_AUTORANGE.ToString()} of SMU Keithley 2602B!"; ;
                         return (false, errorText);
                     }
                     break;
                 case EnumKeithleySmuSetting.MEASURE_RANGE:
-                    if (!double.TryParse(value, out double measureRange)) {
+                    if (!double.TryParse(value, out double measureRange))
+                    {
                         errorText = $"setting value={value} is invalid for {EnumKeithleySmuSetting.MEASURE_RANGE.ToString()} of SMU Keithley 2602B!"; ;
                         return (false, errorText);
                     }
                     break;
                 case EnumKeithleySmuSetting.IS_TURNED_ON:
-                    if (!bool.TryParse(value, out bool isTurnedOn)) {
+                    if (!bool.TryParse(value, out bool isTurnedOn))
+                    {
                         errorText = $"setting value={value} is invalid for {EnumKeithleySmuSetting.IS_TURNED_ON.ToString()} of SMU Keithley 2602B!"; ;
                         return (false, errorText);
                     }
@@ -417,23 +621,37 @@ namespace MyInstruments.MySmu {
             return (true, string.Empty);
         }
 
-        private EnumSmuSourceType GetSourceType(string regularChannel) {
-            if (!sourceTypes.ContainsKey(regularChannel)) {
+        private EnumSmuSourceType GetSourceType(string regularChannel)
+        {
+            if (!sourceTypes.ContainsKey(regularChannel))
+            {
                 throw new Exception($"[{EnumInstrumentCategory.SMU}] {EnumInstrumentVendor.KEYSIGHT}-{EnumModelKeithley._2602B} channel={regularChannel} has not set source type.");
             }
             return sourceTypes[regularChannel];
         }
+        private EnumSmuSourceType GetSourceOffType(string regularChannel)
+        {
+            if (!sourceOffTypes.ContainsKey(regularChannel))
+            {
+                throw new Exception($"[{EnumInstrumentCategory.SMU}] {EnumInstrumentVendor.KEYSIGHT}-{EnumModelKeithley._2602B} channel={regularChannel} has not set source off type.");
+            }
+            return sourceOffTypes[regularChannel];
+        }
 
-        private EnumSmuMeasurementType GetMeasureType(string regularChannel) {
-            if (!measureTypes.ContainsKey(regularChannel)) {
+        private EnumSmuMeasurementType GetMeasureType(string regularChannel)
+        {
+            if (!measureTypes.ContainsKey(regularChannel))
+            {
                 throw new Exception($"[{EnumInstrumentCategory.SMU}] {EnumInstrumentVendor.KEYSIGHT}-{EnumModelKeithley._2602B} channel={regularChannel} has not set measurement type.");
             }
             return measureTypes[regularChannel];
         }
 
-        private double ConvertToDoubleValue(string strValue, string slot, string regularChannel, EnumKeithleySmuSetting settingKey) {
+        private double ConvertToDoubleValue(string strValue, string slot, string regularChannel, EnumKeithleySmuSetting settingKey)
+        {
             double result = 0;
-            if (!double.TryParse(strValue, out result)) {
+            if (!double.TryParse(strValue, out result))
+            {
                 throw new InvalidInstrumentSettingValueException(
                     EnumInstrumentCategory.SMU.ToString(),
                     EnumInstrumentVendor.KEITHLEY.ToString(),
@@ -447,9 +665,11 @@ namespace MyInstruments.MySmu {
             return result;
         }
 
-        private int ConvetToIntValue(string strValue, string slot, string regularChannel, EnumKeithleySmuSetting settingKey) {
+        private int ConvetToIntValue(string strValue, string slot, string regularChannel, EnumKeithleySmuSetting settingKey)
+        {
             int result = 0;
-            if (!int.TryParse(strValue, out result)) {
+            if (!int.TryParse(strValue, out result))
+            {
                 throw new InvalidInstrumentSettingValueException(
                     EnumInstrumentCategory.SMU.ToString(),
                     EnumInstrumentVendor.KEITHLEY.ToString(),
@@ -463,9 +683,11 @@ namespace MyInstruments.MySmu {
             return result;
         }
 
-        private bool ConvertToBooleanValue(string strValue, string slot, string regularChannel, EnumKeithleySmuSetting settingKey) {
+        private bool ConvertToBooleanValue(string strValue, string slot, string regularChannel, EnumKeithleySmuSetting settingKey)
+        {
             bool result;
-            if (!bool.TryParse(strValue, out result)) {
+            if (!bool.TryParse(strValue, out result))
+            {
                 throw new InvalidInstrumentSettingValueException(
                     EnumInstrumentCategory.SMU.ToString(),
                     EnumInstrumentVendor.KEITHLEY.ToString(),
@@ -479,9 +701,11 @@ namespace MyInstruments.MySmu {
             return result;
         }
 
-        private Ke26XXAAutoZeroEnum ConvertToAutoZeroEnum(string strValue, string slot, string regularChannel, EnumKeithleySmuSetting settingKey) {
+        private Ke26XXAAutoZeroEnum ConvertToAutoZeroEnum(string strValue, string slot, string regularChannel, EnumKeithleySmuSetting settingKey)
+        {
             Ke26XXAAutoZeroEnum result;
-            if (!Enum.TryParse(strValue, out result)) {
+            if (!Enum.TryParse(strValue, out result))
+            {
                 throw new InvalidInstrumentSettingValueException(
                     EnumInstrumentCategory.SMU.ToString(),
                     EnumInstrumentVendor.KEITHLEY.ToString(),
@@ -495,18 +719,22 @@ namespace MyInstruments.MySmu {
             return result;
         }
 
-        private string GetRegularChannelString(string channel) {
+        private string GetRegularChannelString(string channel)
+        {
             return channel.ToUpperInvariant().Trim();
         }
 
-        private (bool isOk, Dictionary<EnumKeithleySmuSetting, string> result) TryConvertToEnumSettings(Dictionary<string, string> settings) {
+        private (bool isOk, Dictionary<EnumKeithleySmuSetting, string> result) TryConvertToEnumSettings(Dictionary<string, string> settings)
+        {
             Dictionary<EnumKeithleySmuSetting, string> result = new Dictionary<EnumKeithleySmuSetting, string>();
 
-            foreach (var one in settings) {
+            foreach (var one in settings)
+            {
                 string key = one.Key;
                 string value = one.Value;
 
-                if (!Enum.TryParse(key, out EnumKeithleySmuSetting enumSmuSetting)) {
+                if (!Enum.TryParse(key, out EnumKeithleySmuSetting enumSmuSetting))
+                {
                     LOGGER.Error($"Setting key={key} of Keithley 2602B is invalid!");
                     return (false, null);
                 }
@@ -522,19 +750,23 @@ namespace MyInstruments.MySmu {
         private readonly IKe26XXA keithley2602b = new Ke26XXA();
         private readonly Dictionary<string, EnumSmuSourceType> sourceTypes = new Dictionary<string, EnumSmuSourceType>();
         private readonly Dictionary<string, EnumSmuMeasurementType> measureTypes = new Dictionary<string, EnumSmuMeasurementType>();
+        private readonly Dictionary<string, EnumSmuSourceType> sourceOffTypes = new Dictionary<string, EnumSmuSourceType>();
 
-        public enum EnumChannels {
+        public enum EnumChannels
+        {
             A,
             B
         }
 
-        public enum EnumAutoZeroType {
+        public enum EnumAutoZeroType
+        {
             OFF,
             ONCE,
             AUTO
         }
 
-        public enum EnumTriggerInSetting {
+        public enum EnumTriggerInSetting
+        {
             NPLC,
             TIME_IN_MS_PER_STEP,
             RANGE
