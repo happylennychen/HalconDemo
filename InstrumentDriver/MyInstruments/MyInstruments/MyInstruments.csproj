@@ -37,40 +37,33 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\CommonApi\CommonApi\bin\Debug\CommonApi.dll</HintPath>
     </Reference>
-    <Reference Include="halcondotnet, Version=18.11.0.1, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\halcondotnet.dll</HintPath>
+    <Reference Include="halcondotnet">
+      <HintPath>..\..\..\lib\halcondotnet.dll</HintPath>
     </Reference>
-    <Reference Include="Ivi.Driver.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>C:\Windows\assembly\GAC_64\Ivi.Driver.Interop\1.0.0.0__a128c98f1d7717c1\Ivi.Driver.Interop.dll</HintPath>
+    <Reference Include="Ivi.Driver.Interop">
+      <HintPath>..\..\..\lib\Ivi.Driver.Interop.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Ivi.LxiSync.Interop, Version=1.0.4.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>C:\Windows\assembly\GAC_64\Ivi.LxiSync.Interop\1.0.4.0__a128c98f1d7717c1\Ivi.LxiSync.Interop.dll</HintPath>
+    <Reference Include="Ivi.LxiSync.Interop">
+      <HintPath>..\..\..\lib\Ivi.LxiSync.Interop.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Ivi.Visa, Version=7.2.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v2.0.50727\VISA.NET Shared Components 7.2.0\Ivi.Visa.dll</HintPath>
+    <Reference Include="Ivi.Visa">
+      <HintPath>..\..\..\lib\Ivi.Visa.dll</HintPath>
     </Reference>
     <Reference Include="Keithley.Ke26XXA.Interop, Version=1.9.0.0, Culture=neutral, PublicKeyToken=65cff6f5578f3c89, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>C:\Windows\assembly\GAC_64\Keithley.Ke26XXA.Interop\1.9.0.0__65cff6f5578f3c89\Keithley.Ke26XXA.Interop.dll</HintPath>
+      <HintPath>..\..\..\lib\Keithley.Ke26XXA.Interop.dll</HintPath>
     </Reference>
-    <Reference Include="NationalInstruments.Common, Version=19.1.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\NationalInstruments.Common.dll</HintPath>
+    <Reference Include="NationalInstruments.Common">
+      <HintPath>..\..\..\lib\NationalInstruments.Common.dll</HintPath>
     </Reference>
-    <Reference Include="NationalInstruments.DAQmx, Version=23.8.45.49349, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\NationalInstruments.DAQmx.dll</HintPath>
+    <Reference Include="NationalInstruments.DAQmx">
+      <HintPath>..\..\..\lib\NationalInstruments.DAQmx.dll</HintPath>
     </Reference>
-    <Reference Include="NationalInstruments.Visa, Version=23.8.0.49286, Culture=neutral, PublicKeyToken=2eaa5af0834e221d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v4.0.30319\NI VISA.NET 23.8\NationalInstruments.Visa.dll</HintPath>
+    <Reference Include="NationalInstruments.Visa">
+      <HintPath>..\..\..\lib\NationalInstruments.Visa.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.5.2.5\lib\net46\NLog.dll</HintPath>

@@ -36,7 +36,7 @@
       <HintPath>..\..\..\CommonApi\CommonApi\bin\Debug\CommonApi.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.5.2.5\lib\net46\NLog.dll</HintPath>
+      <HintPath>..\..\..\Prober\Prober\packages\NLog.5.2.5\lib\net46\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -127,9 +127,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Pictures\down.PNG" />
     <Content Include="Pictures\left.PNG" />
     <Content Include="Pictures\backward.PNG" />
@@ -142,6 +139,9 @@
       <Project>{32531efe-a81b-482c-ae6a-9d4d49a5b8b3}</Project>
       <Name>MyMotionStageDriver</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
